@@ -1,0 +1,15 @@
+FROM node:10.7
+
+ADD . /app
+WORKDIR /app
+
+RUN npm install
+RUN npm rebuild node-sass
+ARG APP_NODE_ENV=production
+ENV NODE_ENV ${NODE_ENV}
+RUN npm run build
+ENV BASE_URL=https://localhost:44377
+ENV HOST 0.0.0.0
+EXPOSE 3000
+
+CMD ["npm", "run", "start"]
