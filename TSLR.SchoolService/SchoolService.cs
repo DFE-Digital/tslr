@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Fabric;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
@@ -21,9 +23,8 @@ namespace TSLR.SchoolService
     /// </summary>
     internal sealed class SchoolService : StatelessService, ISchoolService
     {
-        private static string GetKeyVaultCosmosDbUrl() => Environment.GetEnvironmentVariable("KEYVAULT_COSMOSDBURL");
-        private static string GetKeyVaultCosmosDbPrimaryKey() => Environment.GetEnvironmentVariable("KEYVAULT_COSMOSDBPK");
-
+        private string GetKeyVaultCosmosDbUrl = "";
+        private string GetKeyVaultCosmosDbPrimaryKey = "";
         private readonly string _databaseName = "SchoolsDB";
         private readonly string _collectionName = "SchoolCollection";
         private DocumentClient client;
@@ -31,7 +32,11 @@ namespace TSLR.SchoolService
 
         public SchoolService(StatelessServiceContext context)
             : base(context)
-        { }
+        {
+            ConfigurationPackage configPackage = this.Context.CodePackageActivationContext.GetConfigurationPackageObject("Config");
+            GetKeyVaultCosmosDbPrimaryKey = SecureStringToString(configPackage.Settings.Sections["CosmosDB"].Parameters["PrimaryKey"].DecryptValue());
+            GetKeyVaultCosmosDbUrl = SecureStringToString(configPackage.Settings.Sections["CosmosDB"].Parameters["Uri"].DecryptValue());
+        }
 
         /// <summary>
         /// Optional override to create listeners (e.g., TCP, HTTP) for this service replica to handle client or user requests.
@@ -52,7 +57,7 @@ namespace TSLR.SchoolService
             //       or remove this RunAsync override if it's not needed in your service.
 
             long iterations = 0;
-            Connect();
+            ConnectDocumentClient();
             while (true)
             {
                 cancellationToken.ThrowIfCancellationRequested();
@@ -137,9 +142,23 @@ namespace TSLR.SchoolService
             return config.ValidLaCodes.Contains(school.LACode);
         }
 
-        private void Connect()
+        private void ConnectDocumentClient()
         {
-            client = new DocumentClient(new Uri(GetKeyVaultCosmosDbUrl()), GetKeyVaultCosmosDbPrimaryKey());
+            client = new DocumentClient(new Uri(GetKeyVaultCosmosDbUrl), GetKeyVaultCosmosDbPrimaryKey);
+        }
+
+        private string SecureStringToString(SecureString value)
+        {
+            IntPtr bstr = Marshal.SecureStringToBSTR(value);
+
+            try
+            {
+                return Marshal.PtrToStringBSTR(bstr);
+            }
+            finally
+            {
+                Marshal.FreeBSTR(bstr);
+            }
         }
     }
 }

@@ -70,7 +70,8 @@ module.exports = {
     '/api': {
       target: process.env.BASE_URL || 'http://localhost:5000',
       secure: false,
-      changeOrigin: true
+      changeOrigin: true,
+      credentials: false
     }
   },
   /*

@@ -42,4 +42,17 @@
       </StatelessService>
     </Service>
   </DefaultServices>
+  <Principals>
+    <Users>
+      <User Name="Service1" AccountType="NetworkService" />
+    </Users>
+  </Principals>
+  <Policies>
+    <SecurityAccessPolicies>
+      <SecurityAccessPolicy ResourceRef="MyCert" PrincipalRef="Service1" ResourceType="Certificate" />
+    </SecurityAccessPolicies>
+  </Policies>
+  <Certificates>
+    <SecretsCertificate X509FindValue="953EB2C18F4FDE8689069035E7CC0EC36892FB14" Name="MyCert" />
+  </Certificates>
 </ApplicationManifest>

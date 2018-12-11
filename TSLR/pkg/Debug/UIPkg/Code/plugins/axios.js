@@ -1,5 +1,10 @@
 import https from 'https'
 
-export default ({ $axios }) => {
-  $axios.defaults.httpsAgent = new https.Agent({ rejectUnauthorized: false })
+export default function({ $axios, store }) {
+  const agent = new https.Agent({
+    rejectUnauthorized: false
+  })
+  $axios.onRequest(config => {
+    config.httpsAgent = agent
+  })
 }

@@ -50,7 +50,7 @@ namespace TSLR.SchoolSync
             try
             {
                 log.Log(LogLevel.Trace, $"Connect and setup CosmosDb: {DateTime.Now}");
-                await CreateDocumentClient();
+                CreateDocumentClient();
                 await client.CreateDatabaseIfNotExistsAsync(new Database { Id = "SchoolsDB" });
                 await client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri("SchoolsDB"),
                     new DocumentCollection { Id = "SchoolCollection" });
@@ -86,7 +86,7 @@ namespace TSLR.SchoolSync
             }
         }
 
-        private static async Task CreateDocumentClient()
+        private static void CreateDocumentClient()
         {
             client = new DocumentClient(new Uri(GetKeyVaultCosmosDbUrl()), GetKeyVaultCosmosDbPrimaryKey());
         }
