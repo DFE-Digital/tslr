@@ -125,8 +125,8 @@ export default {
       error = true
     }
 
-    if (route.query.school) {
-      routeSchoolName = route.query.school
+    if (route.query.schoolId) {
+      routeSchoolName = route.query.schoolId
     }
     return { invalid: error, schoolName: routeSchoolName }
   },
