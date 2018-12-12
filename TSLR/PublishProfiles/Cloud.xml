@@ -24,6 +24,6 @@
   <ApplicationParameterFile Path="..\ApplicationParameters\Cloud.xml" />
   <CopyPackageParameters CompressPackage="true" />
   <UpgradeDeployment Mode="Monitored" Enabled="true">
-    <Parameters FailureAction="Rollback" Force="True" />
+    <Parameters FailureAction="Rollback" Force="True" ForceRestart="True" />
   </UpgradeDeployment>
 </PublishProfile>

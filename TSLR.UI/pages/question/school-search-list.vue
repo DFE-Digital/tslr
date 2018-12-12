@@ -59,7 +59,7 @@ export default {
       rejectUnauthorized: false
     })
     let schoolRes = await axios
-      .get(`${api}/api/Schools/search?name=${search}`, { httpsAgent: agent })
+      .get(`/api/Schools/search?name=${search}`, { httpsAgent: agent })
       .then(res => {
         return res.data
       })

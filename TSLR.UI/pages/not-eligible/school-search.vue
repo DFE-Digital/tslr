@@ -24,7 +24,7 @@ export default {
 
     if (route.query.schoolId) {
       await axios
-        .get(`api/Schools/schoolId?id=${route.query.schoolId}`)
+        .get(`/api/Schools/schoolId?id=${route.query.schoolId}`)
         .then(res => {
           schoolName = res.data.name
         })
