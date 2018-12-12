@@ -29,7 +29,7 @@
               action="/validator/subjects-taught">
               <fieldset 
                 class="govuk-fieldset govuk-form-group">
-                <input id="school" :value="schoolName" hidden="true" name="school">
+                <input id="school" :value="schoolName" hidden="true" name="schoolId">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                   <h1 class="govuk-fieldset__heading">
                     The subjects you've taught
@@ -113,12 +113,13 @@
   </div></div></section>
 </template>
 <script>
+import axios from 'axios'
 export default {
   watchQuery: true,
   head: {
     title: 'The subjects you taught'
   },
-  asyncData({ route }) {
+  async asyncData({ route }) {
     let routeSchoolName = ''
     let error = false
     if (route.query.invalid) {
@@ -126,15 +127,28 @@ export default {
     }
 
     if (route.query.schoolId) {
-      routeSchoolName = route.query.schoolId
+      await axios
+        .get(`/api/Schools/${route.query.schoolId}`)
+        .then(res => {
+          routeSchoolName = res.data.name
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
-    return { invalid: error, schoolName: routeSchoolName }
+
+    return {
+      invalid: error,
+      schoolName: routeSchoolName,
+      schoolId: route.query.schoolId
+    }
   },
   data: function() {
     return {
       checkedNames: [],
       schoolName: '',
-      invalid: false
+      invalid: false,
+      schoolId: ''
     }
   }
 }

@@ -11,7 +11,7 @@ export default function({ store, route, redirect }) {
       }
     }
     redirect(
-      `/question/subjects-taught?invalid=true&school=${route.query.school}`
+      `/question/subjects-taught?invalid=true&schoolId=${route.query.schoolId}`
     )
   }
 }
