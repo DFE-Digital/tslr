@@ -18,7 +18,7 @@
               <span v-if="error" id="where-did-you-teach-error" class="govuk-error-message">
                 You must select a school
               </span>
-              <div v-if="jsEnabled" id="search-container">
+              <div v-if="jsEnabled()" id="search-container">
                 <div class="search-bar govuk-form-group">
                   <input id="name" v-model="searchTerm" class="govuk-input" type="text" autocomplete="off" @input="onSearch">
                 </div>
@@ -51,7 +51,7 @@
       </button>
     </noscript>
     <button 
-      v-if="jsEnabled" 
+      v-if="jsEnabled()"
       type="button"
       form="school-teach-form" 
       class="govuk-button"
@@ -103,8 +103,7 @@ export default {
       selectedSchool: {
         name: null
       },
-      isLoading: false,
-      jsEnabled: false
+      isLoading: false
     }
   },
 
@@ -115,16 +114,11 @@ export default {
     }
   },
 
-  async created() {
-    if (process.client) {
-      if (!this.jsEnabled) {
-        this.schools = []
-        this.jsEnabled = true
-      }
-    }
-  },
-
   methods: {
+    jsEnabled() {
+      return process.client
+    },
+
     onSearch() {
       if (!this.searchTerm || this.searchTerm.trim().length === 0) return
       return this.getSearchResults(this.searchTerm.trim(), this)
