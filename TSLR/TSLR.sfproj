@@ -29,9 +29,6 @@
     <None Include="Scripts\Deploy-FabricApplication.ps1" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\TSLR.UI\.DS_Store">
-      <Link>ApplicationPackageRoot\UIPkg\Code\.DS_Store</Link>
-    </Content>
     <Content Include="..\TSLR.UI\.editorconfig">
       <Link>ApplicationPackageRoot\UIPkg\Code\.editorconfig</Link>
     </Content>
