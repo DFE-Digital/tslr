@@ -24,9 +24,9 @@
         :class="{'govuk-form-group--error': invalid}"
         class="govuk-form-group"
         action="/validator/student-loan">
-        <fieldset 
-          class="govuk-fieldset govuk-form-group">
+        <fieldset class="govuk-fieldset govuk-form-group">
           <input id="school" :value="schoolName" hidden="true" name="school">
+          <input id="schoolId" :value="id" hidden="true" name="school">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
             <h1 class="govuk-fieldset__heading">
               Did you pay back your student loan while you were at {{ schoolName }}?
@@ -38,30 +38,30 @@
           <div class="govuk-radios">
             <div class="govuk-radios__item">
               <input 
-                id="paid1" 
-                v-model="checkedNames" 
+                id="paid1"
+                v-model="checkedNames"
                 :class="{ 'govuk-input--error': invalid }"
-                class="govuk-radios__input" 
-                name="paid" 
-                type="radio" 
+                class="govuk-radios__input"
+                name="paid"
+                type="radio"
                 value="true">
               <label 
-                class="govuk-label govuk-radios__label" 
+                class="govuk-label govuk-radios__label"
                 for="paid1">
                 Yes
               </label>
             </div>
             <div class="govuk-radios__item">
               <input 
-                id="paid2" 
-                v-model="checkedNames" 
+                id="paid2"
+                v-model="checkedNames"
                 :class="{ 'govuk-input--error': invalid }"
-                class="govuk-radios__input" 
-                name="paid" 
-                type="radio" 
+                class="govuk-radios__input"
+                name="paid"
+                type="radio"
                 value="false">
               <label 
-                class="govuk-label govuk-radios__label" 
+                class="govuk-label govuk-radios__label"
                 for="paid2">
                 No
               </label>
@@ -104,7 +104,7 @@ export default {
     if (route.query.invalid) {
       error = true
     }
-    return { invalid: error, schoolName: schoolName }
+    return { invalid: error, schoolName: schoolName, id: route.query.schoolId }
   },
   data: function() {
     return {
