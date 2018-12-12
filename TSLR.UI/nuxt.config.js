@@ -32,6 +32,10 @@ module.exports = {
   plugins: [
     {
       src: '~/plugins/axios'
+    },
+    {
+      src: '~/plugins/whatwg-fetch',
+      ssr: false
     }
   ],
 

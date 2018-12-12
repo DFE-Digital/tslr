@@ -70,18 +70,16 @@
                   </div>
                 </div>
               </fieldset>
+              <button 
+                type="submit" 
+                form="qualified-form"
+                class="govuk-button">
+                Continue
+              </button>
             </form> 
           </div>
-          <button 
-            type="submit" 
-            form="qualified-form"
-            class="govuk-button">
-            Continue
-          </button>
         </div>
-      </div>
-    </div>
-  </section>
+  </div></div></section>
 </template>
 <script>
 export default {

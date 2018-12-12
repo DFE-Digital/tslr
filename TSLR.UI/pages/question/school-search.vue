@@ -26,8 +26,7 @@
             :class="{'govuk-form-group--error': error}"
             class="govuk-form-group"
             action="/validator/school-search">
-            <fieldset 
-              class="govuk-fieldset govuk-form-group">
+            <fieldset class="govuk-fieldset govuk-form-group">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                 <h1 class="govuk-fieldset__heading">
                   Where have you taught since 6 April 2018?
@@ -40,9 +39,9 @@
                 <div class="search-bar govuk-form-group">
                   <input id="name" v-model="searchTerm" class="govuk-input" type="text" autocomplete="off" @input="onSearch">
                 </div>
-                <div v-if="searchTermActive()" class="search-results" >
+                <div v-if="searchTermActive()" class="search-results">
                   <div v-for="school in schools" :key="school.id" class="search-result" @click="onSelectedSchool(school)">
-                    <div class="school-name" >
+                    <div class="school-name">
                       <span>{{ school.name }}</span>
                     </div>
                     <div class="school-caption">
@@ -56,26 +55,24 @@
                 <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
               </noscript>
             </fieldset>
+            <noscript>
+              <button type="submit"
+              class="govuk-button">
+              Continue
+              </button>
+            </noscript>
+            <button 
+              v-if="jsEnabled()"
+              type="button"
+              class="govuk-button"
+              @click="submit()">
+              Continue
+            </button>
           </form> 
         </div>
       </div>
     </div>
-    <noscript>
-      <button 
-      type="submit" 
-      form="school-teach-form"
-      class="govuk-button">
-      Continue
-      </button>
-    </noscript>
-    <button 
-      v-if="jsEnabled()"
-      type="button"
-      form="school-teach-form" 
-      class="govuk-button"
-      @click="submit()">
-      Continue
-    </button>
+
   </section>
 </template>
 
@@ -125,28 +122,27 @@ export default {
     }
   },
 
-  computed: {
-    searchResults() {
-      if (!this.searchTerm || this.searchTerm.trim().length === 0) return
-      return this.getSearchResults(this.searchTerm.trim(), this)
-    }
-  },
-
   methods: {
     jsEnabled() {
       return process.client
     },
 
-    onSearch() {
-      if (!this.searchTerm || this.searchTerm.trim().length === 0) return
-      return this.getSearchResults(this.searchTerm.trim(), this)
+    async onSearch() {
+      if (!this.searchTerm || this.searchTerm.trim().length === 0) {
+      } else {
+        await this.getSearchResults(this.searchTerm.trim())
+      }
     },
 
-    getSearchResults: _.debounce((searchTerm, vm) => {
-      vm.searchTermCompleted = false
-      fetch(`/api/Schools/search?name=${escape(searchTerm)}`)
-        .then(res => res.json())
-        .then(json => (vm.schools = json))
+    getSearchResults: _.debounce(async function(searchTerm) {
+      this.schools = await axios
+        .get(`/api/Schools/search?name=${escape(searchTerm)}`)
+        .then(res => {
+          return res.data
+        })
+        .catch(err => {
+          console.log('Error: ' + err)
+        })
     }, 350),
 
     onSelectedSchool(school) {

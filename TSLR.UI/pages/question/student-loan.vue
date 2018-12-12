@@ -72,18 +72,16 @@
                 </div>
                 <input type="hidden" name="error" value="student-loan">
               </fieldset>
+              <button 
+                type="submit" 
+                class="govuk-button">
+                Continue
+              </button>
             </form> 
-            <button 
-              type="submit" 
-              form="student-loan-form"
-              class="govuk-button">
-              Continue
-            </button>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+  </div></section>
 </template>
 <script>
 import axios from 'axios'
