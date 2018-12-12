@@ -4,7 +4,7 @@ export default async function({ store, route, redirect }) {
     if (route.query.paid) {
       if (route.query.paid.includes('true')) {
         let schoolRes = await axios
-          .get(`/api/Schools/${route.query.id}/sen`)
+          .get(`/api/Schools/${route.query.schoolId}/sen`)
           .then(res => {
             console.log('returned :' + res.data)
             return res.data
@@ -12,7 +12,7 @@ export default async function({ store, route, redirect }) {
           .catch(err => {
             console.log('Error: ' + err)
             redirect(
-              `/question/student-loan?invalid=true&schoolId=${route.query.id}`
+              `/question/student-loan?invalid=true&schoolId=${route.query.schoolId}`
             )
           })
         if (schoolRes) {
@@ -24,6 +24,6 @@ export default async function({ store, route, redirect }) {
         redirect('/not-eligible/student-loan')
       }
     }
-    redirect(`/question/student-loan?invalid=true&schoolId=${route.query.id}`)
+    redirect(`/question/student-loan?invalid=true&schoolId=${route.query.schoolId}`)
   }
 }
