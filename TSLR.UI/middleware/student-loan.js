@@ -12,7 +12,9 @@ export default async function({ store, route, redirect }) {
           .catch(err => {
             console.log('Error: ' + err)
             redirect(
-              `/question/student-loan?invalid=true&schoolId=${route.query.schoolId}`
+              `/question/student-loan?invalid=true&schoolId=${
+                route.query.schoolId
+              }`
             )
           })
         if (schoolRes) {
@@ -24,6 +26,8 @@ export default async function({ store, route, redirect }) {
         redirect('/not-eligible/student-loan')
       }
     }
-    redirect(`/question/student-loan?invalid=true&schoolId=${route.query.schoolId}`)
+    redirect(
+      `/question/student-loan?invalid=true&schoolId=${route.query.schoolId}`
+    )
   }
 }

@@ -104,7 +104,11 @@ export default {
     if (route.query.invalid) {
       error = true
     }
-    return { invalid: error, schoolName: schoolName, schoolId: route.query.schoolId }
+    return {
+      invalid: error,
+      schoolName: schoolName,
+      schoolId: route.query.schoolId
+    }
   },
   data: function() {
     return {
