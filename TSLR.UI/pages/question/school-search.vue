@@ -53,7 +53,7 @@
                 <input v-model="selectedSchool.name" type="hidden" name="query_school">
               </div>
               <noscript>
-                <input class="govuk-input" name="query_school" type="text" list="schools">
+                <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
               </noscript>
             </fieldset>
           </form> 

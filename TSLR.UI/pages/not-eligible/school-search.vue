@@ -1,15 +1,17 @@
 <template>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <div class="govuk-heading-xl">
-        You're not eligible to claim student loan payments
+  <section class="container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-heading-xl">
+          You're not eligible to claim student loan payments
+        </div>
+        <p class="govuk-body">
+          You can only claim if your school is in an eligible area for this scheme.
+        </p>
+        <a href="https://www.gov.uk/guidance/teachers-student-loan-reimbursement-guidance-for-teachers-and-schools#eligibility-criteria" class="govuk-link">Check where the eligible areas are</a>
       </div>
-      <p class="govuk-body">
-        You can only claim if your school is in an eligible area for this scheme.
-      </p>
-      <a href="/" class="govuk-link">Check where the eligible areas are</a>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -19,3 +21,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.container {
+  margin-bottom: 20px;
+}
+</style>

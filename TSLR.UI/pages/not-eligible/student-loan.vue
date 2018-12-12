@@ -1,14 +1,18 @@
 <template>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <div class="govuk-heading-xl">
-        You're not eligible to claim student loan payments
+  <section class="container">
+    <div class="govuk-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <div class="govuk-heading-xl">
+            You're not eligible to claim student loan payments
+          </div>
+          <p class="govuk-body">
+            You can only claim if student loan payments were taken from your teaching wages while you were at {{ schoolName }}
+          </p>
+        </div>
       </div>
-      <p class="govuk-body">
-        You can only claim if student loan payments were taken from your teaching wages while you were at {{ schoolName }}
-      </p>
     </div>
-  </div>
+  </section>
 </template>
 <script>
 import axios from 'axios'
