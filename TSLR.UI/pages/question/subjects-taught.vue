@@ -29,7 +29,7 @@
               action="/validator/subjects-taught">
               <fieldset 
                 class="govuk-fieldset govuk-form-group">
-                <input id="school" :value="schoolName" hidden="true" name="schoolId">
+                <input id="school" :value="schoolId" hidden="true" name="schoolId">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                   <h1 class="govuk-fieldset__heading">
                     The subjects you've taught
