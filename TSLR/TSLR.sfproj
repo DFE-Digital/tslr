@@ -194,24 +194,6 @@
     <Content Include="..\TSLR.UI\components\README.md">
       <Link>ApplicationPackageRoot\UIPkg\Code\components\README.md</Link>
     </Content>
-    <Content Include="..\TSLR.UI\dist\.nojekyll">
-      <Link>ApplicationPackageRoot\UIPkg\Code\dist\.nojekyll</Link>
-    </Content>
-    <Content Include="..\TSLR.UI\dist\200.html">
-      <Link>ApplicationPackageRoot\UIPkg\Code\dist\200.html</Link>
-    </Content>
-    <Content Include="..\TSLR.UI\dist\favicon.ico">
-      <Link>ApplicationPackageRoot\UIPkg\Code\dist\favicon.ico</Link>
-    </Content>
-    <Content Include="..\TSLR.UI\dist\index.html">
-      <Link>ApplicationPackageRoot\UIPkg\Code\dist\index.html</Link>
-    </Content>
-    <Content Include="..\TSLR.UI\dist\README.md">
-      <Link>ApplicationPackageRoot\UIPkg\Code\dist\README.md</Link>
-    </Content>
-    <Content Include="..\TSLR.UI\dist\_nuxt\LICENSES">
-      <Link>ApplicationPackageRoot\UIPkg\Code\dist\_nuxt\LICENSES</Link>
-    </Content>
     <Content Include="..\TSLR.UI\docker-compose.yml">
       <Link>ApplicationPackageRoot\UIPkg\Code\docker-compose.yml</Link>
     </Content>
