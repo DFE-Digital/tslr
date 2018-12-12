@@ -85,7 +85,7 @@ import axios from 'axios'
 export default {
   watchQuery: true,
   head: {
-    title: 'Did you pay your student loan?'
+    title: 'Student loan check'
   },
   async asyncData({ route }) {
     let schoolName = ''

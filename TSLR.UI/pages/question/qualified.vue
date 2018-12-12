@@ -81,7 +81,7 @@
 export default {
   watchQuery: true,
   head: {
-    title: 'Check Intro'
+    title: 'The date you qualified as a teacher'
   },
   asyncData({ route }) {
     if (route.query.invalid) {

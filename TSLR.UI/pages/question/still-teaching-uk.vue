@@ -81,7 +81,7 @@
 export default {
   watchQuery: true,
   head: {
-    title: 'Are you still teaching in the UK?'
+    title: "Check you're still teaching"
   },
   asyncData({ route }) {
     if (route.query.invalid) {

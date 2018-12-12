@@ -113,7 +113,7 @@
 export default {
   watchQuery: true,
   head: {
-    title: 'Did you teach these subjects?'
+    title: 'The subjects you taught'
   },
   asyncData({ route }) {
     let routeSchoolName = ''

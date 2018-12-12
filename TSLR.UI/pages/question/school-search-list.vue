@@ -42,7 +42,7 @@ import https from 'http'
 export default {
   watchQuery: true,
   head: {
-    title: 'Check Intro'
+    title: 'School search'
   },
   async asyncData({ route }) {
     let invalid = false

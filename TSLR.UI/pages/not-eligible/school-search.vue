@@ -16,7 +16,7 @@ import axios from 'axios'
 export default {
   watchQuery: true,
   head: {
-    title: 'Not eligible'
+    title: 'You are not eligible'
   },
   async asyncData({ route }) {
     let schoolName = ''
