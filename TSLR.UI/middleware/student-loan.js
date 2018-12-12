@@ -1,3 +1,5 @@
+import axios from 'axios'
+import axios from 'axios'
 export default async function({ store, route, redirect }) {
   if (route.path.includes('validator/student-loan')) {
     if (route.query.paid) {
