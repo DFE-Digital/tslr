@@ -39,8 +39,8 @@ namespace TSLR.API.Controllers
             return Ok(await _schoolService.GetSchoolsByName(name));
         }
 
-        [HttpGet("  ")]
-        public async Task<ActionResult<School>> GetSchoolById([FromQuery] int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<School>> GetSchoolById(int id)
         {
             return Ok(await _schoolService.GetSchoolById(id));
         }

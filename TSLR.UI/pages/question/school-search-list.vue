@@ -51,13 +51,15 @@ export default {
     if (route.query.school) {
       search = route.query.school
     }
+    console.log('Searching for ' + search)
     let schoolRes = await axios
       .get(`/api/Schools/search?name=${search}`)
       .then(res => {
+        console.log('returned' + res.data)
         return res.data
       })
       .catch(err => {
-        console.log(err)
+        console.log('error: ' + err)
       })
     return {
       error: invalid,
