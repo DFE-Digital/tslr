@@ -37,8 +37,6 @@
 </template>
 <script>
 import axios from 'axios'
-import _ from 'lodash'
-import https from 'http'
 export default {
   watchQuery: true,
   head: {
@@ -53,13 +51,8 @@ export default {
     if (route.query.school) {
       search = route.query.school
     }
-    console.log(search)
-    const api = process.env.BASE_URL || 'http://localhost:5000'
-    const agent = new https.Agent({
-      rejectUnauthorized: false
-    })
     let schoolRes = await axios
-      .get(`/api/Schools/search?name=${search}`, { httpsAgent: agent })
+      .get(`/api/Schools/search?name=${search}`)
       .then(res => {
         return res.data
       })
