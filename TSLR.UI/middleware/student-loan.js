@@ -1,8 +1,25 @@
-export default function({ store, route, redirect }) {
+import axios from 'axios'
+export default async function({ store, route, redirect }) {
   if (route.path.includes('validator/student-loan')) {
     if (route.query.paid) {
       if (route.query.paid.includes('true')) {
-        redirect(`/question/subjects-taught?school=${route.query.school}`)
+        let schoolRes = await axios
+          .get(`/api/Schools/${route.query.id}/sen`)
+          .then(res => {
+            console.log('returned :' + res.data)
+            return res.data
+          })
+          .catch(err => {
+            console.log('Error: ' + err)
+            redirect(
+              `/question/student-loan?invalid=true&school=${route.query.school}`
+            )
+          })
+        if (schoolRes) {
+          redirect('/question/still-teaching-uk')
+        } else {
+          redirect(`/question/subjects-taught?school=${route.query.school}`)
+        }
       } else if (route.query.paid.includes('false')) {
         redirect('/not-eligible/student-loan')
       }

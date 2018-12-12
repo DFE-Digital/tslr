@@ -128,6 +128,22 @@ namespace TSLR.SchoolService
             return false;
         }
 
+        public async Task<bool> ValidateSENSchool(School school)
+        {
+            var configs = await Task.FromResult(client.CreateDocumentQuery<SchoolSettings>(
+                UriFactory.CreateDocumentCollectionUri(_databaseName, _collectionName),
+                queryOptions).Where(c => c.Id == "Settings").ToList());
+            var config = configs.First();
+            if (ValidLASchool(config, school))
+            {
+                if (IsSENSchool(config, school))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private bool IsSecondarySchool(SchoolSettings config, School school)
         {
             return config.PhaseCodes.Contains(school.PhaseCode);

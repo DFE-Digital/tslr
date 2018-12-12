@@ -13,5 +13,6 @@ namespace TSLR.Domain.Services
         Task<List<School>> GetSchoolsByName(string name);
         Task<bool> ValidateSchoolEligible(School school);
         Task<School> GetSchoolById(int id);
+        Task<bool> ValidateSENSchool(School school);
     }
 }

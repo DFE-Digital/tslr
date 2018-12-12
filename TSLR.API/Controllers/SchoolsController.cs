@@ -39,7 +39,7 @@ namespace TSLR.API.Controllers
             return Ok(await _schoolService.GetSchoolsByName(name));
         }
 
-        [HttpGet("schoolId")]
+        [HttpGet("  ")]
         public async Task<ActionResult<School>> GetSchoolById([FromQuery] int id)
         {
             return Ok(await _schoolService.GetSchoolById(id));
@@ -68,6 +68,20 @@ namespace TSLR.API.Controllers
             if (school != null)
             {
                 return Ok(await _schoolService.ValidateSchoolEligible(school));
+            }
+
+            return NotFound();
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}/sen")]
+        public async Task<ActionResult<bool>> GetSENSchool(int id)
+        {
+
+            var school = await _schoolService.GetSchoolById(id);
+            if (school != null)
+            {
+                return Ok(await _schoolService.ValidateSENSchool(school));
             }
 
             return NotFound();
