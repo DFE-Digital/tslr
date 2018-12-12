@@ -1,4 +1,4 @@
-export default function ({ store, route, redirect }) {
+export default function({ store, route, redirect }) {
   if (route.path.includes('validator/student-loan')) {
     if (route.query.paid) {
       if (route.query.paid.includes('true')) {
@@ -10,4 +10,3 @@ export default function ({ store, route, redirect }) {
     redirect(`/question/student-loan?invalid=true&school=${route.query.school}`)
   }
 }
-
