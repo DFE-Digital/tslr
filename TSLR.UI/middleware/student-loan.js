@@ -4,7 +4,7 @@ export default async function({ store, route, redirect }) {
     if (route.query.paid) {
       if (route.query.paid.includes('true')) {
         let schoolRes = await axios
-          .get(`/api/Schools/${route.query.id}/sen`)
+          .get(`/api/Schools/${route.query.schoolId}/sen`)
           .then(res => {
             console.log('returned :' + res.data)
             return res.data
