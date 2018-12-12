@@ -18,13 +18,13 @@
               <span v-if="error" id="where-did-you-teach-error" class="govuk-error-message">
                 You must select a school
               </span>
-              <div id="search-container">
+              <div v-if="jsEnabled" id="search-container">
                 <div class="search-bar govuk-form-group">
                   <input id="name" v-model="searchTerm" class="govuk-input" type="text" autocomplete="off" @input="onSearch">
                 </div>
                 <div v-if="searchTermActive()" class="search-results" >
-                  <div v-for="school in schools" :key="school.id" class="search-result">
-                    <div class="school-name">
+                  <div v-for="school in schools" :key="school.id" class="search-result" @click="onSelectedSchool(school)">
+                    <div class="school-name" >
                       <span>{{ school.name }}</span>
                     </div>
                     <div class="school-caption">
@@ -32,11 +32,11 @@
                     </div>
                   </div>
                 </div>
-                <input v-if="jsEnabled" v-model="selectedSchool.name" type="hidden" name="query_school">
-                <noscript>
-                  <input class="govuk-input" name="query_school" type="text" list="schools">
-                </noscript>
+                <input v-model="selectedSchool.name" type="hidden" name="query_school">
               </div>
+              <noscript>
+                <input class="govuk-input" name="query_school" type="text" list="schools">
+              </noscript>
             </fieldset>
           </form> 
         </div>
@@ -93,6 +93,7 @@ export default {
   data: function() {
     return {
       searchTerm: '',
+      searchTermCompleted: false,
       schools: [
         {
           name: ''
@@ -130,13 +131,24 @@ export default {
     },
 
     getSearchResults: _.debounce((searchTerm, vm) => {
+      vm.searchTermCompleted = false
       fetch(`/api/Schools/search?name=${escape(searchTerm)}`)
         .then(res => res.json())
         .then(json => (vm.schools = json))
     }, 350),
 
+    onSelectedSchool(school) {
+      this.searchTermCompleted = true
+      this.searchTerm = school.name
+      this.selectedSchool = school
+    },
+
     searchTermActive() {
-      return this.searchTerm !== undefined && this.searchTerm.trim().length > 0
+      console.log(this.searchTermCompleted)
+      return (
+        !this.searchTermCompleted &&
+        (this.searchTerm !== undefined && this.searchTerm.trim().length > 0)
+      )
     },
 
     getLabel(school) {
