@@ -3,6 +3,24 @@
     <div class="govuk-width-container">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
+          <div 
+            v-if="error" 
+            class="govuk-error-summary" 
+            aria-labelledby="error-summary-title" 
+            role="alert" 
+            tabindex="-1" 
+            data-module="error-summary">
+            <h2 id="error-summary-title" class="govuk-error-summary__title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                  <a href="#when-did-you-qualify-error">You must select a school</a>
+                </li>
+              </ul>
+            </div>
+          </div>
           <form 
             id="school-teach-form"
             :class="{'govuk-form-group--error': error}"
