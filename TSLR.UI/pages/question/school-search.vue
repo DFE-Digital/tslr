@@ -37,7 +37,14 @@
               </span>
               <div v-if="jsEnabled()" id="search-container">
                 <div class="search-bar govuk-form-group">
-                  <input id="name" v-model="searchTerm" class="govuk-input" type="text" autocomplete="off" @input="onSearch">
+                  <input 
+                    id="name" 
+                    v-model="searchTerm" 
+                    class="govuk-input" 
+                    type="text" 
+                    autocomplete="off" 
+                    @input="onSearch" 
+                    @keyup.enter="submit()">
                 </div>
                 <div v-if="searchTermActive()" class="search-results">
                   <div v-for="school in schools" :key="school.id" class="search-result" @click="onSelectedSchool(school)">
