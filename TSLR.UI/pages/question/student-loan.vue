@@ -28,8 +28,8 @@
               class="govuk-form-group"
               action="/validator/student-loan">
               <fieldset class="govuk-fieldset govuk-form-group">
-                <input id="school" :value="schoolName" hidden="true" name="school">
-                <input id="schoolId" :value="schoolId" hidden="true" name="school">
+                <input id="school" :value="schoolName" hidden="true" name="schoolName">
+                <input id="schoolId" :value="schoolId" hidden="true" name="schoolId">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                   <h1 class="govuk-fieldset__heading">
                     Did you pay back your student loan while you were at {{ schoolName }}?

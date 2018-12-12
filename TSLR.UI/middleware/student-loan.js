@@ -22,7 +22,7 @@ export default async function({ store, route, redirect }) {
         } else {
           redirect(`/question/subjects-taught?schoolId=${route.query.schoolId}`)
         }
-        redirect(`/not-eligible/school-search?schoolId=${route.query.id}`)
+        redirect(`/not-eligible/school-search?schoolId=${route.query.schoolId}`)
       } else if (route.query.paid.includes('false')) {
         redirect('/not-eligible/student-loan')
       }
