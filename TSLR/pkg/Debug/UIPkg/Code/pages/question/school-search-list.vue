@@ -37,12 +37,10 @@
 </template>
 <script>
 import axios from 'axios'
-import _ from 'lodash'
-import https from 'http'
 export default {
   watchQuery: true,
   head: {
-    title: 'Check Intro'
+    title: 'School search'
   },
   async asyncData({ route }) {
     let invalid = false
@@ -53,18 +51,15 @@ export default {
     if (route.query.school) {
       search = route.query.school
     }
-    console.log(search)
-    const api = process.env.BASE_URL || 'http://localhost:5000'
-    const agent = new https.Agent({
-      rejectUnauthorized: false
-    })
+    console.log('Searching for ' + search)
     let schoolRes = await axios
-      .get(`${api}/api/Schools/search?name=${search}`, { httpsAgent: agent })
+      .get(`/api/Schools/search?name=${search}`)
       .then(res => {
+        console.log('returned' + res.data)
         return res.data
       })
       .catch(err => {
-        console.log(err)
+        console.log('error: ' + err)
       })
     return {
       error: invalid,

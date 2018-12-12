@@ -46,3 +46,4 @@ TSLR-API/schoolData.json
 TSLR-API/schoolData.csv
 TSLR-API/schoolData.csv
 *.csv
+TSLR/pkg/Debug/

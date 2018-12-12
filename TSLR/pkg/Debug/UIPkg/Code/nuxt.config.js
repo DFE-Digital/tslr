@@ -31,11 +31,11 @@ module.exports = {
   */
   plugins: [
     {
-      src: '~/plugins/vue-select',
-      ssr: false
+      src: '~/plugins/axios'
     },
     {
-      src: '~/plugins/axios'
+      src: '~/plugins/whatwg-fetch',
+      ssr: false
     }
   ],
 

@@ -1,48 +1,29 @@
 <template>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <div class="govuk-heading-xl">
-        You're not eligible to claim student loan payments
+  <section class="container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-heading-xl">
+          You're not eligible to claim student loan payments
+        </div>
+        <p class="govuk-body">
+          You can only claim if your school is in an eligible area for this scheme.
+        </p>
+        <a href="https://www.gov.uk/guidance/teachers-student-loan-reimbursement-guidance-for-teachers-and-schools#eligibility-criteria" class="govuk-link">Check where the eligible areas are</a>
       </div>
-      <p class="govuk-body">
-        You can only claim if student loan payments were taken from your teaching wages while you were at {{ schoolName }}
-      </p>
     </div>
-  </div>
+  </section>
 </template>
+
 <script>
-import axios from 'axios'
-
 export default {
-  watchQuery: true,
   head: {
-    title: 'Not eligible'
-  },
-  async asyncData({ route }) {
-    let schoolName = ''
-    let error = false
-
-    if (route.query.schoolId) {
-      await axios
-        .get(`api/Schools/schoolId?id=${route.query.schoolId}`)
-        .then(res => {
-          schoolName = res.data.name
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
-
-    if (route.query.invalid) {
-      error = true
-    }
-
-    return { invalid: error, schoolName: schoolName }
-  },
-  data: function() {
-    return {
-      schoolName: ''
-    }
+    title: 'You are not eligible'
   }
 }
 </script>
+
+<style>
+.container {
+  margin-bottom: 20px;
+}
+</style>

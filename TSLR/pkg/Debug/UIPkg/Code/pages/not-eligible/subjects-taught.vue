@@ -17,3 +17,11 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  head: {
+    title: 'You are not eligible'
+  }
+}
+</script>

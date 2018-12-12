@@ -2,7 +2,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-heading-xl">
-        Check if you're eligible
+        Check you're eligible
       </div>
       <p class="govuk-body">
         You'll be asked questions to check whether you're eligible to claim your student loan payments back.

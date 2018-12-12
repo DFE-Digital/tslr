@@ -10,9 +10,17 @@
       <p class="govuk-body">
         You can apply from September 2019. Register your details and we'll send you updates about the service.
       </p>
-      <nuxt-link to="/" role="button" draggable="false" class="govuk-button govuk-button--start">
+      <a href="https://goo.gl/forms/Fpl9VoqSMWoAZwPn2/" role="button" draggable="false" class="govuk-button govuk-button--start">
         Register for updates
-      </nuxt-link>
+      </a>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  head: {
+    title: 'You are eligible'
+  }
+}
+</script>

@@ -18,10 +18,11 @@ module.exports = {
     ],
     // add your custom rules here
     rules: {
+      'vue/attribute-hyphenation': [2, 'never'],
       'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
       'vue/max-attributes-per-line': ['error', {
-        'singleline': 5
+        'singleline': 6
       }]
     }
   }
