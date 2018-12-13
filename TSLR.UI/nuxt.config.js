@@ -50,7 +50,14 @@ module.exports = {
       'student-loan',
       'subjects-taught',
       'still-teaching-uk'
-    ]
+    ],
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'custom',
+        path: '*',
+        component: resolve(__dirname, 'pages/404.vue')
+      })
+    }
   },
 
   /*
