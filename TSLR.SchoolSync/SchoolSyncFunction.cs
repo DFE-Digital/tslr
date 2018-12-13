@@ -27,15 +27,18 @@ namespace TSLR.SchoolSync
         [FunctionName("SchoolSyncFunction")]
         public static async Task Run([TimerTrigger("0 0 12 * * *", RunOnStartup = true)] TimerInfo myTimer, ILogger log)
         {
+            var downloadPath = Path.Combine(Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)), "Temp");
+
             log.Log(LogLevel.Trace, $"C# Timer trigger function executed at: {DateTime.Now}");
             var currentDate = DateTime.Now.ToString("yyyyMMdd");
             try
             {
+                Directory.CreateDirectory(downloadPath);
                 using (var client = new WebClient())
                 {
                     client.DownloadFile(
                         $"http://ea-edubase-api-prod.azurewebsites.net/edubase/edubasealldata{currentDate}.csv",
-                        "schoolData.csv");
+                        Path.Combine(downloadPath, "cschoolData.csv"));
                 }
                 log.Log(LogLevel.Trace, $"Downloaded CSV: {DateTime.Now}");
 
@@ -65,7 +68,7 @@ namespace TSLR.SchoolSync
             settings.DateParseHandling = DateParseHandling.DateTime;
             settings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
             settings.ContractResolver = new CustomSchoolContractResolver();
-            using (StreamReader sr = new StreamReader("schoolData.csv"))
+            using (StreamReader sr = new StreamReader(Path.Combine(downloadPath, "cschoolData.csv")))
             {
                 log.Log(LogLevel.Trace, $"Loading CSV: {DateTime.Now}");
                 try

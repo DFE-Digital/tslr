@@ -24,54 +24,56 @@
           <div>
             <form 
               id="student-loan-form"
-              :class="{'govuk-form-group--error': invalid}"
-              class="govuk-form-group"
               action="/validator/student-loan">
-              <fieldset class="govuk-fieldset govuk-form-group">
-                <input id="school" :value="schoolName" hidden="true" name="schoolName">
-                <input id="schoolId" :value="schoolId" hidden="true" name="schoolId">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-                  <h1 class="govuk-fieldset__heading">
-                    Did you pay back your student loan while you were at {{ schoolName }}?
-                  </h1>
-                </legend>
-                <span v-if="invalid" id="paid-error" class="govuk-error-message">
-                  Select one of the options
-                </span>
-                <div class="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <input 
-                      id="paid1"
-                      v-model="checkedNames"
-                      :class="{ 'govuk-input--error': invalid }"
-                      class="govuk-radios__input"
-                      name="paid"
-                      type="radio"
-                      value="true">
-                    <label 
-                      class="govuk-label govuk-radios__label"
-                      for="paid1">
-                      Yes
-                    </label>
+              <div
+                :class="{'govuk-form-group--error': invalid}"
+                class="govuk-form-group">
+                <fieldset class="govuk-fieldset govuk-form-group">
+                  <input id="school" :value="schoolName" hidden="true" name="schoolName">
+                  <input id="schoolId" :value="schoolId" hidden="true" name="schoolId">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                      Did you pay back your student loan while you were at {{ schoolName }}?
+                    </h1>
+                  </legend>
+                  <span v-if="invalid" id="paid-error" class="govuk-error-message">
+                    Select one of the options
+                  </span>
+                  <div class="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input 
+                        id="paid1"
+                        v-model="checkedNames"
+                        :class="{ 'govuk-input--error': invalid }"
+                        class="govuk-radios__input"
+                        name="paid"
+                        type="radio"
+                        value="true">
+                      <label 
+                        class="govuk-label govuk-radios__label"
+                        for="paid1">
+                        Yes
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input 
+                        id="paid2"
+                        v-model="checkedNames"
+                        :class="{ 'govuk-input--error': invalid }"
+                        class="govuk-radios__input"
+                        name="paid"
+                        type="radio"
+                        value="false">
+                      <label 
+                        class="govuk-label govuk-radios__label"
+                        for="paid2">
+                        No
+                      </label>
+                    </div>
                   </div>
-                  <div class="govuk-radios__item">
-                    <input 
-                      id="paid2"
-                      v-model="checkedNames"
-                      :class="{ 'govuk-input--error': invalid }"
-                      class="govuk-radios__input"
-                      name="paid"
-                      type="radio"
-                      value="false">
-                    <label 
-                      class="govuk-label govuk-radios__label"
-                      for="paid2">
-                      No
-                    </label>
-                  </div>
-                </div>
-                <input type="hidden" name="error" value="student-loan">
-              </fieldset>
+                  <input type="hidden" name="error" value="student-loan">
+                </fieldset>
+              </div>
               <button 
                 type="submit" 
                 class="govuk-button">

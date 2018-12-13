@@ -23,53 +23,55 @@
           </div>
           <div>
             <form 
-              id="qualified-form"
-              :class="{'govuk-form-group--error': invalid}"
-              class="govuk-form-group"
+              id="qualified-form"            
               action="/validator/qualified">
-              <fieldset 
-                class="govuk-fieldset govuk-form-group">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-                  <h1 class="govuk-fieldset__heading">
-                    Check when you qualified
-                  </h1>
-                </legend>
-                <span v-if="invalid" id="when-did-you-qualify-error" class="govuk-error-message">
-                  You must select when you qualified
-                </span>
-                <div class="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <input 
-                      id="when-did-you-qualify1" 
-                      v-model="checkedNames" 
-                      :class="{ 'govuk-input--error': invalid }"
-                      class="govuk-radios__input" 
-                      name="qualified" 
-                      type="radio" 
-                      value="After">
-                    <label 
-                      class="govuk-label govuk-radios__label" 
-                      for="where-do-you-live-1">
-                      On or after 1 September 2012
-                    </label>
+              <div
+                :class="{'govuk-form-group--error': invalid}"
+                class="govuk-form-group">
+                <fieldset 
+                  class="govuk-fieldset govuk-form-group">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                      Check when you qualified
+                    </h1>
+                  </legend>
+                  <span v-if="invalid" id="when-did-you-qualify-error" class="govuk-error-message">
+                    You must select when you qualified
+                  </span>
+                  <div class="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input 
+                        id="when-did-you-qualify1" 
+                        v-model="checkedNames" 
+                        :class="{ 'govuk-input--error': invalid }"
+                        class="govuk-radios__input" 
+                        name="qualified" 
+                        type="radio" 
+                        value="After">
+                      <label 
+                        class="govuk-label govuk-radios__label" 
+                        for="where-do-you-live-1">
+                        On or after 1 September 2012
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input 
+                        id="when-did-you-qualify2" 
+                        v-model="checkedNames" 
+                        :class="{ 'govuk-input--error': invalid }"
+                        class="govuk-radios__input" 
+                        name="qualified" 
+                        type="radio" 
+                        value="Before">
+                      <label 
+                        class="govuk-label govuk-radios__label" 
+                        for="where-do-you-live-2">
+                        Before 1 September 2012
+                      </label>
+                    </div>
                   </div>
-                  <div class="govuk-radios__item">
-                    <input 
-                      id="when-did-you-qualify2" 
-                      v-model="checkedNames" 
-                      :class="{ 'govuk-input--error': invalid }"
-                      class="govuk-radios__input" 
-                      name="qualified" 
-                      type="radio" 
-                      value="Before">
-                    <label 
-                      class="govuk-label govuk-radios__label" 
-                      for="where-do-you-live-2">
-                      Before 1 September 2012
-                    </label>
-                  </div>
-                </div>
-              </fieldset>
+                </fieldset>
+              </div>
               <button 
                 type="submit" 
                 form="qualified-form"

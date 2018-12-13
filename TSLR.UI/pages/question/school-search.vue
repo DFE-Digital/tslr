@@ -23,45 +23,47 @@
           </div>
           <form 
             id="school-teach-form"
-            :class="{'govuk-form-group--error': error}"
-            class="govuk-form-group"
             action="/validator/school-search">
-            <fieldset class="govuk-fieldset govuk-form-group">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-                <h1 class="govuk-fieldset__heading">
-                  Where have you taught since 6 April 2018?
-                </h1>
-              </legend>
-              <span v-if="error" id="where-did-you-teach-error" class="govuk-error-message">
-                You must select a school
-              </span>
-              <div v-if="jsEnabled()" id="search-container">
-                <div class="search-bar govuk-form-group">
-                  <input 
-                    id="name" 
-                    v-model="searchTerm" 
-                    class="govuk-input" 
-                    type="text" 
-                    autocomplete="off" 
-                    @input="onSearch" 
-                    @keyup.enter="submit()">
-                </div>
-                <div v-if="searchTermActive()" class="search-results">
-                  <div v-for="school in schools" :key="school.id" class="search-result" @click="onSelectedSchool(school)">
-                    <div class="school-name">
-                      <span>{{ school.name }}</span>
-                    </div>
-                    <div class="school-caption">
-                      <span>{{ getLabel(school) }}</span>
+            <div
+              :class="{'govuk-form-group--error': error}"
+              class="govuk-form-group">
+              <fieldset class="govuk-fieldset govuk-form-group">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                  <h1 class="govuk-fieldset__heading">
+                    Where have you taught since 6 April 2018?
+                  </h1>
+                </legend>
+                <span v-if="error" id="where-did-you-teach-error" class="govuk-error-message">
+                  You must select a school
+                </span>
+                <div v-if="jsEnabled()" id="search-container">
+                  <div class="search-bar govuk-form-group">
+                    <input 
+                      id="name" 
+                      v-model="searchTerm" 
+                      class="govuk-input" 
+                      type="text" 
+                      autocomplete="off" 
+                      @input="onSearch" 
+                      @keyup.enter="submit()">
+                  </div>
+                  <div v-if="searchTermActive()" class="search-results">
+                    <div v-for="school in schools" :key="school.id" class="search-result" @click="onSelectedSchool(school)">
+                      <div class="school-name">
+                        <span>{{ school.name }}</span>
+                      </div>
+                      <div class="school-caption">
+                        <span>{{ getLabel(school) }}</span>
+                      </div>
                     </div>
                   </div>
+                  <input v-model="selectedSchool.name" type="hidden" name="query_school">
                 </div>
-                <input v-model="selectedSchool.name" type="hidden" name="query_school">
-              </div>
-              <noscript>
-                <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
-              </noscript>
-            </fieldset>
+                <noscript>
+                  <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
+                </noscript>
+              </fieldset>
+            </div>
             <noscript>
               <button type="submit"
               class="govuk-button">

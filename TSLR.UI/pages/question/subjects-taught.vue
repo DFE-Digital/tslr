@@ -27,81 +27,85 @@
               :class="{'govuk-form-group--error': invalid}"
               class="govuk-form-group"
               action="/validator/subjects-taught">
-              <fieldset 
-                class="govuk-fieldset govuk-form-group">
-                <input id="school" :value="schoolId" hidden="true" name="schoolId">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-                  <h1 class="govuk-fieldset__heading">
-                    The subjects you've taught
-                  </h1>
-                </legend>
-                <p class="govuk-body">
-                  You can only claim your student loan payments back if you've been teaching one or more of these subjects since 6 April 2018.
-                </p>
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>biology</li>
-                  <li>chemistry</li>
-                  <li>physics</li>
-                  <li>computer science</li>
-                  <li>languages (not including English)</li>
-                </ul>
-                <p class="govuk-body">
-                  Since 6 April 2018, have you taught one or more of these subjects at {{ schoolName }}?
-                </p>
-                <p class="govuk-body">
-                  If you've been off on long-term leave or sick, include the time you were scheduled to teach these subjects.
-                </p>
-                <span v-if="invalid" id="taught-error" class="govuk-error-message">
-                  Select one of the options
-                </span>
-                <div class="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <input 
-                      id="taught1" 
-                      v-model="checkedNames" 
-                      :class="{ 'govuk-input--error': invalid }"
-                      class="govuk-radios__input" 
-                      name="taught" 
-                      type="radio" 
-                      value="1">
-                    <label 
-                      class="govuk-label govuk-radios__label" 
-                      for="taught1">
-                      Yes, for more than 50% of your teaching time
-                    </label>
+              <div
+                :class="{'govuk-form-group--error': invalid}"
+                class="govuk-form-group">
+                <fieldset 
+                  class="govuk-fieldset govuk-form-group">
+                  <input id="school" :value="schoolId" hidden="true" name="schoolId">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                      The subjects you've taught
+                    </h1>
+                  </legend>
+                  <p class="govuk-body">
+                    You can only claim your student loan payments back if you've been teaching one or more of these subjects since 6 April 2018.
+                  </p>
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>biology</li>
+                    <li>chemistry</li>
+                    <li>physics</li>
+                    <li>computer science</li>
+                    <li>languages (not including English)</li>
+                  </ul>
+                  <p class="govuk-body">
+                    Since 6 April 2018, have you taught one or more of these subjects at {{ schoolName }}?
+                  </p>
+                  <p class="govuk-body">
+                    If you've been off on long-term leave or sick, include the time you were scheduled to teach these subjects.
+                  </p>
+                  <span v-if="invalid" id="taught-error" class="govuk-error-message">
+                    Select one of the options
+                  </span>
+                  <div class="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input 
+                        id="taught1" 
+                        v-model="checkedNames" 
+                        :class="{ 'govuk-input--error': invalid }"
+                        class="govuk-radios__input" 
+                        name="taught" 
+                        type="radio" 
+                        value="1">
+                      <label 
+                        class="govuk-label govuk-radios__label" 
+                        for="taught1">
+                        Yes, for more than 50% of your teaching time
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input 
+                        id="taught2" 
+                        v-model="checkedNames" 
+                        :class="{ 'govuk-input--error': invalid }"
+                        class="govuk-radios__input" 
+                        name="taught" 
+                        type="radio" 
+                        value="2">
+                      <label 
+                        class="govuk-label govuk-radios__label" 
+                        for="taught2">
+                        Yes, for less than 50% of your teaching time
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input 
+                        id="taught3" 
+                        v-model="checkedNames" 
+                        :class="{ 'govuk-input--error': invalid }"
+                        class="govuk-radios__input" 
+                        name="taught" 
+                        type="radio" 
+                        value="3">
+                      <label 
+                        class="govuk-label govuk-radios__label" 
+                        for="taught3">
+                        No, you did not teach any of these subjects
+                      </label>
+                    </div>
                   </div>
-                  <div class="govuk-radios__item">
-                    <input 
-                      id="taught2" 
-                      v-model="checkedNames" 
-                      :class="{ 'govuk-input--error': invalid }"
-                      class="govuk-radios__input" 
-                      name="taught" 
-                      type="radio" 
-                      value="2">
-                    <label 
-                      class="govuk-label govuk-radios__label" 
-                      for="taught2">
-                      Yes, for less than 50% of your teaching time
-                    </label>
-                  </div>
-                  <div class="govuk-radios__item">
-                    <input 
-                      id="taught3" 
-                      v-model="checkedNames" 
-                      :class="{ 'govuk-input--error': invalid }"
-                      class="govuk-radios__input" 
-                      name="taught" 
-                      type="radio" 
-                      value="3">
-                    <label 
-                      class="govuk-label govuk-radios__label" 
-                      for="taught3">
-                      No, you did not teach any of these subjects
-                    </label>
-                  </div>
-                </div>
-              </fieldset>
+                </fieldset>
+              </div>
               <button 
                 type="submit"
                 class="govuk-button">

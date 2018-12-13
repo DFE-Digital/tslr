@@ -24,52 +24,54 @@
           <div>
             <form 
               id="still-teaching-uk"
-              :class="{'govuk-form-group--error': invalid}"
-              class="govuk-form-group"
               action="/validator/still-teaching-uk">
-              <fieldset 
-                class="govuk-fieldset govuk-form-group">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-                  <h1 class="govuk-fieldset__heading">
-                    Are you still teaching at a school in the UK?
-                  </h1>
-                </legend>
-                <span v-if="invalid" id="still-teaching-uk-error" class="govuk-error-message">
-                  Select one of the options
-                </span>
-                <div class="govuk-radios">
-                  <div class="govuk-radios__item">
-                    <input 
-                      id="still-teaching-uk1" 
-                      v-model="checkedNames" 
-                      :class="{ 'govuk-input--error': invalid }"
-                      class="govuk-radios__input" 
-                      name="status" 
-                      type="radio" 
-                      value="true">
-                    <label 
-                      class="govuk-label govuk-radios__label" 
-                      for="still-teaching-uk1">
-                      Yes
-                    </label>
+              <div
+                :class="{'govuk-form-group--error': invalid}"
+                class="govuk-form-group">
+                <fieldset 
+                  class="govuk-fieldset govuk-form-group">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                      Are you still teaching at a school in the UK?
+                    </h1>
+                  </legend>
+                  <span v-if="invalid" id="still-teaching-uk-error" class="govuk-error-message">
+                    Select one of the options
+                  </span>
+                  <div class="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input 
+                        id="still-teaching-uk1" 
+                        v-model="checkedNames" 
+                        :class="{ 'govuk-input--error': invalid }"
+                        class="govuk-radios__input" 
+                        name="status" 
+                        type="radio" 
+                        value="true">
+                      <label 
+                        class="govuk-label govuk-radios__label" 
+                        for="still-teaching-uk1">
+                        Yes
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input 
+                        id="still-teaching-uk2" 
+                        v-model="checkedNames" 
+                        :class="{ 'govuk-input--error': invalid }"
+                        class="govuk-radios__input" 
+                        name="status" 
+                        type="radio" 
+                        value="false">
+                      <label 
+                        class="govuk-label govuk-radios__label" 
+                        for="still-teaching-uk2">
+                        No
+                      </label>
+                    </div>
                   </div>
-                  <div class="govuk-radios__item">
-                    <input 
-                      id="still-teaching-uk2" 
-                      v-model="checkedNames" 
-                      :class="{ 'govuk-input--error': invalid }"
-                      class="govuk-radios__input" 
-                      name="status" 
-                      type="radio" 
-                      value="false">
-                    <label 
-                      class="govuk-label govuk-radios__label" 
-                      for="still-teaching-uk2">
-                      No
-                    </label>
-                  </div>
-                </div>
-              </fieldset>
+                </fieldset>
+              </div>
               <button 
                 type="submit" 
                 class="govuk-button">
