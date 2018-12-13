@@ -17,7 +17,10 @@ export default async function({ store, route, redirect }) {
         redirect(`/question/student-loan?schoolId=${route.query.id}`)
       }
       redirect(`/not-eligible/school-search?schoolId=${route.query.id}`)
-    } else if (route.query.query_school) {
+    } else if (
+      route.query.query_school &&
+      route.query.query_school.length > 0
+    ) {
       redirect(
         `/question/school-search-list?school=${route.query.query_school}`
       )
