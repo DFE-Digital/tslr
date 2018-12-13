@@ -99,34 +99,21 @@ export default {
     if (route.query.invalid) {
       invalid = true
     }
-
-    let schoolRes = await axios
-      .get(`api/Schools`)
-      .then(res => {
-        return res.data
-      })
-      .catch(err => {
-        console.log(err)
-      })
     return {
-      error: invalid,
-      schools: schoolRes
+      error: invalid
     }
   },
   data: function() {
     return {
       searchTerm: '',
       searchTermCompleted: false,
-      schools: [
-        {
-          name: ''
-        }
-      ],
+      schools: [],
       error: false,
       selectedSchool: {
         name: null
       },
-      isLoading: false
+      isLoading: false,
+      cancelSource: null
     }
   },
 
@@ -141,10 +128,18 @@ export default {
         await this.getSearchResults(this.searchTerm.trim())
       }
     },
-
+    cancelSearch() {
+      if (this.cancelSource) {
+        this.cancelSource.cancel('Start new search, stop active search')
+      }
+    },
     getSearchResults: _.debounce(async function(searchTerm) {
+      this.cancelSearch()
+      this.cancelSource = axios.CancelToken.source()
       this.schools = await axios
-        .get(`/api/Schools/search?name=${escape(searchTerm)}`)
+        .get(`/api/Schools/search?name=${escape(searchTerm)}`, {
+          cancelToken: this.cancelSource.token
+        })
         .then(res => {
           return res.data
         })
