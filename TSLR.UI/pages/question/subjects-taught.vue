@@ -24,8 +24,6 @@
           <div>
             <form 
               id="subjects-taught-form"
-              :class="{'govuk-form-group--error': invalid}"
-              class="govuk-form-group"
               action="/validator/subjects-taught">
               <div
                 :class="{'govuk-form-group--error': invalid}"
