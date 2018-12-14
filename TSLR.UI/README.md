@@ -1,6 +1,6 @@
 # tslr
 
-> Teacher Student Loan Repayment
+> Teacher Student Loan Reimbursement
 
 ## Build Setup
 

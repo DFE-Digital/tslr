@@ -24,7 +24,7 @@
       </div>
       <div class="govuk-header__content">
         <a href="/eligible-start" class="govuk-header__link govuk-header__link--service-name">
-          Teacher Student Loan Repayment
+          Teacher Student Loan Reimbursement
         </a>
       </div>
     </div>

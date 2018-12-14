@@ -1,7 +1,7 @@
 {
   "name": "tslr",
   "version": "1.0.0",
-  "description": "Teacher Student Loan Repayment",
+  "description": "Teacher Student Loan Reimbursement",
   "author": "James",
   "private": true,
   "scripts": {
