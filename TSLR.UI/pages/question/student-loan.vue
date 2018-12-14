@@ -32,8 +32,8 @@
                   <input id="school" :value="schoolName" hidden="true" name="schoolName">
                   <input id="schoolId" :value="schoolId" hidden="true" name="schoolId">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-                    <h1 class="govuk-fieldset__heading">
-                      Did you pay back your student loan while you were at {{ schoolName }}?
+                    <h1 class="heading govuk-fieldset__heading">
+                      Did you pay back your student loan while you were at AldridgeUTC@Mediacity?
                     </h1>
                   </legend>
                   <span v-if="invalid" id="paid-error" class="govuk-error-message">
@@ -126,3 +126,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.heading {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+</style>

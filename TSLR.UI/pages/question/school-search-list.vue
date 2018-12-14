@@ -4,7 +4,8 @@
       Back
     </nuxt-link>
     <main id="main-content" class="govuk-main-wrapper app-main-class" role="main">
-      <h1 class="govuk-heading-xl">School Search Results</h1>
+      <h1 class="govuk-heading-xl">Matching Schools</h1>
+      <p class="govuk-body">We found {{ schools.length }} results for {{ search }}</p>
     </main>
     <div>
       <ul v-for="school in schools" :key="school.id" class="govuk-list">
