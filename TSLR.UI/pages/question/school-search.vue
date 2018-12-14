@@ -60,7 +60,7 @@
                       @keyup.enter="onSelectedSchool(school)" 
                       @click="onSelectedSchool(school)">
                       <div class="school-name">
-                        <span>{{ school.name }}</span>
+                        <span>{{ school.name }} {{ closeTag(school.closeDate) }}</span>
                       </div>
                       <div class="school-caption">
                         <span>{{ getLabel(school) }}</span>
@@ -240,6 +240,16 @@ export default {
         path: '/validator/school-search',
         query: { id: this.selectedSchool.id }
       })
+    },
+
+    closeTag(closeDate) {
+      if (closeDate === undefined || closeDate.length === 0) return ''
+      const year = parseInt(closeDate.substr(6, 4))
+      const month = parseInt(closeDate.substr(3, 2)) - 1
+      const day = parseInt(closeDate.substr(0, 2))
+      let formattedDate = new Date(year, month, day)
+
+      return formattedDate <= new Date() ? '(Closed)' : ''
     }
   }
 }

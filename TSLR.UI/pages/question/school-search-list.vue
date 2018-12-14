@@ -89,7 +89,7 @@ export default {
       const day = parseInt(closeDate.substr(0, 2))
       let formattedDate = new Date(year, month, day)
 
-      return formattedDate <= new Date() ? '(Closing)' : ''
+      return formattedDate <= new Date() ? '(Closed)' : ''
     }
   }
 }
