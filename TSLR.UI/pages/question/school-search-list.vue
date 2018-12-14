@@ -15,7 +15,7 @@
             <div v-for="school in schools" :key="school.id" class="govuk-list">
               <div class="school-link govuk-!-font-size-24 govuk-!-font-weight-bold">
                 <nuxt-link :to="{ path: 'validator/school-search', query: { id: school.id }}" class="govuk-link">
-                  {{ school.name }}
+                  {{ school.name }} {{ closeTag(school.closeDate) }}
                 </nuxt-link>
               </div>
               <p class="school-info govuk-body">{{ school.street }}, {{ school.locality }}, {{ school.town }}, {{ school.postCode }}</p>
@@ -78,6 +78,18 @@ export default {
         this.schools = []
         this.jsEnabled = true
       }
+    }
+  },
+
+  methods: {
+    closeTag(closeDate) {
+      if (closeDate === undefined || closeDate.length === 0) return ''
+      const year = parseInt(closeDate.substr(6, 4))
+      const month = parseInt(closeDate.substr(3, 2)) - 1
+      const day = parseInt(closeDate.substr(0, 2))
+      let formattedDate = new Date(year, month, day)
+
+      return formattedDate <= new Date() ? '(Closing)' : ''
     }
   }
 }
