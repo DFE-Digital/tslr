@@ -33,7 +33,7 @@
                   <input id="schoolId" :value="schoolId" hidden="true" name="schoolId">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="heading govuk-fieldset__heading">
-                      Did you pay back your student loan while you were at AldridgeUTC@Mediacity?
+                      Did you pay back your student loan while you were at {{ schoolName }}?
                     </h1>
                   </legend>
                   <span v-if="invalid" id="paid-error" class="govuk-error-message">
