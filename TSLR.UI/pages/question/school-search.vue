@@ -45,10 +45,20 @@
                       type="text" 
                       autocomplete="off" 
                       @input="onSearch" 
+                      @keyup.down="onDropdownItemShift(1)"
+                      @keyup.up="onDropdownItemShift(-1)"
                       @keyup.enter="submit()">
                   </div>
                   <div v-if="searchTermActive()" class="search-results">
-                    <div v-for="school in schools" :key="school.id" class="search-result" @click="onSelectedSchool(school)">
+                    <div
+                      v-for="(school, index) in schools" 
+                      :key="school.id" 
+                      :index="index"
+                      :class="{'active-item': school.isActive}" 
+                      class="search-result"
+                      @mouseover="onDropdownItemShiftHover(index)"
+                      @keyup.enter="onSelectedSchool(school)" 
+                      @click="onSelectedSchool(school)">
                       <div class="school-name">
                         <span>{{ school.name }}</span>
                       </div>
@@ -99,21 +109,36 @@ export default {
     if (route.query.invalid) {
       invalid = true
     }
+
+    let schoolRes = await axios
+      .get(`api/Schools`)
+      .then(res => {
+        return res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
     return {
-      error: invalid
+      error: invalid,
+      schools: schoolRes
     }
   },
   data: function() {
     return {
       searchTerm: '',
       searchTermCompleted: false,
-      schools: [],
+      currentDropdownIndex: -1,
+      currentDropdownItem: {},
+      schools: [
+        {
+          name: ''
+        }
+      ],
       error: false,
       selectedSchool: {
         name: null
       },
-      isLoading: false,
-      cancelSource: null
+      isLoading: false
     }
   },
 
@@ -128,24 +153,17 @@ export default {
         await this.getSearchResults(this.searchTerm.trim())
       }
     },
-    cancelSearch() {
-      if (this.cancelSource) {
-        this.cancelSource.cancel('Start new search, stop active search')
-      }
-    },
+
     getSearchResults: _.debounce(async function(searchTerm) {
-      this.cancelSearch()
-      this.cancelSource = axios.CancelToken.source()
       this.schools = await axios
-        .get(`/api/Schools/search?name=${escape(searchTerm)}`, {
-          cancelToken: this.cancelSource.token
-        })
+        .get(`/api/Schools/search?name=${escape(searchTerm)}`)
         .then(res => {
           return res.data
         })
         .catch(err => {
           console.log('Error: ' + err)
         })
+      this.schools.map(s => (s.isActive = false))
     }, 350),
 
     onSelectedSchool(school) {
@@ -155,7 +173,6 @@ export default {
     },
 
     searchTermActive() {
-      console.log(this.searchTermCompleted)
       return (
         !this.searchTermCompleted &&
         (this.searchTerm !== undefined && this.searchTerm.trim().length > 0)
@@ -165,19 +182,59 @@ export default {
     getLabel(school) {
       if (school) {
         let label = ''
-        if (school.street.length > 0) {
+        if (school.street && school.street.length > 0) {
           label = `${label}${school.street}`
         }
-        if (school.town.length > 0) {
+        if (school.town && school.town.length > 0) {
           label = `${label}, ${school.town}`
         }
-        if (school.postCode.length > 0) {
+        if (school.postCode && school.postCode.length > 0) {
           label = `${label}, ${school.postCode}`
         }
         return label
       }
       return ''
     },
+
+    onDropdownItemShift(shiftValue) {
+      if (this.schools === undefined || this.schools.length === 0) return
+
+      let schools = this.schools
+      this.schools = []
+
+      if (this.currentDropdownIndex > -1)
+        schools[this.currentDropdownIndex].isActive = false
+      this.currentDropdownIndex += shiftValue
+
+      if (
+        this.currentDropdownIndex > -1 &&
+        schools[this.currentDropdownIndex] !== undefined
+      ) {
+        schools[this.currentDropdownIndex].isActive = true
+        this.searchTerm = schools[this.currentDropdownIndex].name
+        this.selectedSchool = schools[this.currentDropdownIndex]
+      }
+
+      this.schools = schools
+    },
+
+    onDropdownItemShiftHover(itemIndex) {
+      if (this.schools === undefined || this.schools.length === 0) return
+
+      let schools = this.schools
+      this.schools = []
+
+      if (this.currentDropdownIndex > -1)
+        schools[this.currentDropdownIndex].isActive = false
+
+      this.currentDropdownIndex = itemIndex
+      schools[itemIndex].isActive = true
+      this.schools = schools
+
+      this.searchTerm = schools[this.currentDropdownIndex].name
+      this.selectedSchool = schools[this.currentDropdownIndex]
+    },
+
     submit() {
       this.$router.push({
         path: '/validator/school-search',
@@ -221,7 +278,7 @@ export default {
         background-color: #fafafa;
       }
 
-      &:hover {
+      /*&:hover {
         border-color: #005ea5;
         background-color: #005ea5;
         outline: none;
@@ -230,7 +287,7 @@ export default {
 
       &:hover .school-caption {
         color: #fff;
-      }
+      }*/
 
       .school-caption {
         font-size: 1rem;
@@ -249,6 +306,18 @@ export default {
           color: inherit;
         }
       }
+    }
+
+    .search-result.active-item {
+      border-color: #005ea5;
+      background-color: #005ea5;
+      border-color: #005ea5;
+      outline: none;
+      color: #fff;
+    }
+
+    .active-item .school-caption {
+      color: #fff;
     }
   }
 }
