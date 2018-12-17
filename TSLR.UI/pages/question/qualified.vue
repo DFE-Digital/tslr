@@ -32,7 +32,7 @@
                   class="govuk-fieldset govuk-form-group">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="govuk-fieldset__heading">
-                      Check when you qualified
+                      When did you qualify as a teacher?
                     </h1>
                   </legend>
                   <span v-if="invalid" id="when-did-you-qualify-error" class="govuk-error-message">

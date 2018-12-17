@@ -23,7 +23,8 @@
           </div>
           <form 
             id="school-teach-form"
-            action="/validator/school-search">
+            action="/validator/school-search"
+            onsubmit="return false;">
             <div
               :class="{'govuk-form-group--error': error}"
               class="govuk-form-group">
@@ -33,9 +34,20 @@
                     Where have you taught since 6 April 2018?
                   </h1>
                 </legend>
+                <details class="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      You've taught at more than one school
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    For now, enter one of the schools you've taught at. You can check another school when you've finished.
+                  </div>
+                </details>
                 <span v-if="error" id="where-did-you-teach-error" class="govuk-error-message">
                   You must select a school
                 </span>
+                <label class="govuk-label" for="check-school-name">Enter the school name</label>
                 <div v-if="jsEnabled()" id="search-container">
                   <div class="search-bar govuk-form-group">
                     <input 
@@ -47,11 +59,12 @@
                       @input="onSearch" 
                       @keyup.down="onDropdownItemShift(1)"
                       @keyup.up="onDropdownItemShift(-1)"
-                      @keyup.enter="submit()">
+                      @keyup.enter="onSelectedSchoolEnter()">
                   </div>
                   <div v-if="searchTermActive()" class="search-results">
                     <div
-                      v-for="(school, index) in schools" 
+                      v-for="(school, index) in schools"
+                      :id="'school-' + index"
                       :key="school.id" 
                       :index="index"
                       :class="{'active-item': school.isActive}" 
@@ -65,6 +78,7 @@
                       <div class="school-caption">
                         <span>{{ getLabel(school) }}</span>
                       </div>
+                      <a :href="'#school-' + index" />
                     </div>
                   </div>
                 </div>
@@ -83,7 +97,8 @@
               v-if="jsEnabled()"
               type="button"
               class="govuk-button"
-              @click="submit()">
+              @click="submit()"
+              @enter="submit()">
               Continue
             </button>
           </form> 
@@ -148,6 +163,7 @@ export default {
     },
 
     async onSearch() {
+      this.searchTermCompleted = false
       if (!this.searchTerm || this.searchTerm.trim().length === 0) {
       } else {
         await this.getSearchResults(this.searchTerm.trim())
@@ -170,6 +186,13 @@ export default {
       this.searchTermCompleted = true
       this.searchTerm = school.name
       this.selectedSchool = school
+    },
+
+    onSelectedSchoolEnter() {
+      if (this.searchTerm === '') return
+      this.searchTermCompleted = true
+      this.searchTerm = this.schools[this.currentDropdownIndex].name
+      this.selectedSchool = this.schools[this.currentDropdownIndex]
     },
 
     searchTermActive() {
@@ -216,6 +239,9 @@ export default {
       }
 
       this.schools = schools
+      document
+        .getElementById('school-' + this.currentDropdownIndex)
+        .scrollIntoView()
     },
 
     onDropdownItemShiftHover(itemIndex) {
