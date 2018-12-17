@@ -32,6 +32,10 @@ module.exports = {
   plugins: [
     {
       src: '~/plugins/axios'
+    },
+    {
+      src: '~/plugins/ga',
+      ssr: false
     }
   ],
 
