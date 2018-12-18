@@ -16,7 +16,7 @@ require('greenlock-express')
 
     // Note: If at first you don't succeed, switch to staging to debug
     // https://acme-staging-v02.api.letsencrypt.org/directory
-    server: 'https://acme-v02.api.letsencrypt.org/directory',
+    server: 'https://acme-staging-v02.api.letsencrypt.org/directory',
 
     // Where the certs will be saved, MUST have write access
     configDir: './.config/acme/',
