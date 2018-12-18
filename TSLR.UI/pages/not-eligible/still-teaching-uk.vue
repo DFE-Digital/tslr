@@ -6,9 +6,9 @@
           You're not eligible to claim student loan payments
         </div>
         <p class="govuk-body">
-          You must be currently teaching a school in the UK.
+          You must be currently working a school in the UK.
         </p>
-        <a href="https://www.gov.uk/" class="govuk-link">go to gov.uk homepage</a>
+        <a href="https://www.gov.uk/" class="govuk-link">Go to gov.uk homepage</a>
       </div>
     </div>
   </section>

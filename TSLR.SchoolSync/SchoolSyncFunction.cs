@@ -25,9 +25,9 @@ namespace TSLR.SchoolSync
         private static DocumentClient client;
 
         [FunctionName("SchoolSyncFunction")]
-        public static async Task Run([TimerTrigger("0 0 12 * * *", RunOnStartup = true)] TimerInfo myTimer, ILogger log)
+        public static async Task Run([TimerTrigger("0 0 12 * * *")] TimerInfo myTimer, ILogger log)
         {
-            var downloadPath = Path.Combine(Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)), "Temp");
+            var downloadPath = Path.GetTempPath();
 
             log.Log(LogLevel.Trace, $"C# Timer trigger function executed at: {DateTime.Now}");
             var currentDate = DateTime.Now.ToString("yyyyMMdd");

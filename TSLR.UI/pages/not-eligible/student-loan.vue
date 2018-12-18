@@ -9,6 +9,7 @@
           <p class="govuk-body">
             You can only claim if student loan payments were taken from your teaching wages while you were at {{ schoolName }}
           </p>
+          <a href="https://www.gov.uk/" class="govuk-link">Go to gov.uk homepage</a>
         </div>
       </div>
     </div>
