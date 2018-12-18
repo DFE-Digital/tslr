@@ -32,7 +32,7 @@
                   class="govuk-fieldset govuk-form-group">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="govuk-fieldset__heading">
-                      Are you still teaching at a school in the UK?
+                      Are you still working at a school in the UK?
                     </h1>
                   </legend>
                   <span v-if="invalid" id="still-teaching-uk-error" class="govuk-error-message">

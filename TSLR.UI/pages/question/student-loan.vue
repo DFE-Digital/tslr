@@ -33,7 +33,7 @@
                   <input id="schoolId" :value="schoolId" hidden="true" name="schoolId">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
                     <h1 class="heading govuk-fieldset__heading">
-                      Did you pay back your student loan while you were at {{ schoolName }}?
+                      Have student loan payments been taken from your wages at {{ schoolName }} since 6 april 2018?
                     </h1>
                   </legend>
                   <span v-if="invalid" id="paid-error" class="govuk-error-message">
