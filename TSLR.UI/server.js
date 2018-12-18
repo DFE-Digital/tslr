@@ -17,7 +17,7 @@ require('greenlock-express')
     server: 'https://acme-v02.api.letsencrypt.org/directory',
 
     // Where the certs will be saved, MUST have write access
-    configDir: '~/.config/acme/',
+    configDir: './.config/acme/',
 
     // You MUST change this to a valid email address
     email: 'james.dalton@infinityworks.com',
