@@ -6,7 +6,7 @@
       </strong>
       <span class="ncs-phase-banner__text govuk-phase-banner__text">
         This is a new service – your
-        <a class="govuk-link" href="mailto:itt.financialincentives@gmail.com">feedback</a> will help us to improve it.
+        <a class="govuk-link" href="mailto:financial.incentives@education.gov.uk">feedback</a> will help us to improve it.
       </span>
     </p>
   </div>
