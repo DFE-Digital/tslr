@@ -34,7 +34,7 @@
                     Where have you taught since 6 April 2018?
                   </h1>
                 </legend>
-                <details class="govuk-details">
+                <details class="govuk-details" tabindex="4">
                   <summary class="govuk-details__summary">
                     <span class="govuk-details__summary-text">
                       You've taught at more than one school
@@ -52,16 +52,19 @@
                   <div class="search-bar govuk-form-group">
                     <input 
                       id="name"
+                      ref="search" 
                       v-model="searchTerm" 
-                      class="govuk-input" 
-                      type="text"
-                      autocomplete="off" 
+                      class="govuk-input"
+                      type="text" 
+                      autocomplete="off"
+                      maxlength="300"
+                      tabindex="5"
                       @input="onSearch"
                       @keyup.down="onDropdownItemShift(1)"
                       @keyup.up="onDropdownItemShift(-1)"
                       @keyup.enter="onSelectedSchoolEnter()">
                   </div>
-                  <div v-if="searchTermActive()" ref="dropdown" class="search-results">
+                  <div v-if="searchTermActive()" ref="dropdown" class="search-results" tabindex="-1">
                     <div
                       v-for="(school, index) in schools"
                       :id="'school-' + index" 
@@ -69,11 +72,13 @@
                       :index="index" 
                       :class="{'active-item': school.isActive}"
                       class="search-result"
+                      tabindex="-1"
                       @mouseover="onDropdownItemShiftHover(index)"
-                      @keyup.enter="onSelectedSchool(school)" 
+                      @mouseleave="onDropdownMouseOut(index)"
+                      @keyup.enter="onSelectedSchool(school)"
                       @click="onSelectedSchool(school)">
                       <div class="school-name">
-                        <span>{{ school.name }} {{ closeTag(school.closeDate) }}</span>
+                        <span>{{ school.name }}</span> <span class="closed-tag">{{ closeTag(school.closeDate) }}</span>
                       </div>
                       <div class="school-caption">
                         <span>{{ getLabel(school) }}</span>
@@ -88,15 +93,13 @@
               </fieldset>
             </div>
             <noscript>
-              <button type="submit"
-              class="govuk-button">
-              Continue
-              </button>
+              <button type="submit" class="govuk-button" tabindex="6">Continue</button>
             </noscript>
             <button 
               v-if="jsEnabled()"
               type="button"
               class="govuk-button"
+              tabindex="6"
               @click="submit()"
               @enter="submit()">
               Continue
@@ -164,12 +167,7 @@ export default {
     },
 
     async onSearch() {
-      if (this.$refs.dropdown !== undefined) this.$refs.dropdown.scrollTop = 0
-      if (this.currentDropdownIndex > -1)
-        this.schools[this.currentDropdownIndex].isActive = false
-
-      this.searchTermCompleted = false
-      this.currentDropdownIndex = -1
+      this.resetQuery()
 
       if (!this.searchTerm || this.searchTerm.trim().length === 0) {
         this.initialSearchTerm = ''
@@ -229,14 +227,15 @@ export default {
     },
 
     onDropdownItemShift(shiftValue) {
+      if (this.currentDropdownIndex === -1 && shiftValue === -1) return false
+
       if (
         !this.searchTerm ||
         this.searchTerm.trim().length === 0 ||
         this.schools === undefined ||
         this.schools.length === 0 ||
         (this.currentDropdownIndex + 1 >= this.schools.length &&
-          shiftValue === 1) ||
-        (this.currentDropdownIndex === -1 && shiftValue === -1)
+          shiftValue === 1)
       )
         return
 
@@ -275,6 +274,16 @@ export default {
       this.selectedSchool = schools[this.currentDropdownIndex]
     },
 
+    onDropdownMouseOut(itemIndex) {
+      let schools = this.schools
+      this.schools = []
+      schools[itemIndex].isActive = false
+      this.schools = schools
+
+      this.searchTerm = this.initialSearchTerm
+      this.resetQuery()
+    },
+
     submit() {
       this.$router.push({
         path: '/validator/school-search',
@@ -290,6 +299,15 @@ export default {
       let formattedDate = new Date(year, month, day)
 
       return formattedDate <= new Date() ? '(Closed)' : ''
+    },
+
+    resetQuery() {
+      if (this.$refs.dropdown !== undefined) this.$refs.dropdown.scrollTop = 0
+      if (this.currentDropdownIndex > -1)
+        this.schools[this.currentDropdownIndex].isActive = false
+
+      this.searchTermCompleted = false
+      this.currentDropdownIndex = -1
     }
   }
 }
@@ -328,17 +346,6 @@ export default {
         background-color: #fafafa;
       }
 
-      /*&:hover {
-        border-color: #005ea5;
-        background-color: #005ea5;
-        outline: none;
-        color: #fff;
-      }
-
-      &:hover .school-caption {
-        color: #fff;
-      }*/
-
       .school-caption {
         font-size: 1rem;
         line-height: 1.25;
@@ -366,8 +373,18 @@ export default {
       color: #fff;
     }
 
-    .active-item .school-caption {
-      color: #fff;
+    .active-item {
+      .school-caption,
+      .closed-tag {
+        color: #fff;
+        opacity: 1;
+      }
+    }
+
+    .closed-tag {
+      color: #6f777b;
+      opacity: 0.8;
+      font-style: italic;
     }
   }
 }

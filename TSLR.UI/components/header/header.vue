@@ -2,7 +2,7 @@
   <header class="govuk-header" role="banner" data-module="header">
     <div class="govuk-header__container govuk-width-container">
       <div class="govuk-header__logo">
-        <a href="https://www.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <a href="https://www.gov.uk" class="govuk-header__link govuk-header__link--homepage" tabindex="1">
           <span class="govuk-header__logotype">
             <svg 
               role="presentation" 
@@ -23,7 +23,7 @@
         </a>
       </div>
       <div class="govuk-header__content">
-        <a href="/eligible-start" class="govuk-header__link govuk-header__link--service-name">
+        <a href="/eligible-start" class="govuk-header__link govuk-header__link--service-name" tabindex="2">
           Check if you can claim back student loan payments
         </a>
       </div>
