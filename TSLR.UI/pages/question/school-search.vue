@@ -51,23 +51,23 @@
                 <div v-if="jsEnabled()" id="search-container">
                   <div class="search-bar govuk-form-group">
                     <input 
-                      id="name" 
+                      id="name"
                       v-model="searchTerm" 
                       class="govuk-input" 
-                      type="text" 
+                      type="text"
                       autocomplete="off" 
-                      @input="onSearch" 
+                      @input="onSearch"
                       @keyup.down="onDropdownItemShift(1)"
                       @keyup.up="onDropdownItemShift(-1)"
                       @keyup.enter="onSelectedSchoolEnter()">
                   </div>
-                  <div v-if="searchTermActive()" class="search-results">
+                  <div v-if="searchTermActive()" ref="dropdown" class="search-results">
                     <div
                       v-for="(school, index) in schools"
-                      :id="'school-' + index"
-                      :key="school.id" 
-                      :index="index"
-                      :class="{'active-item': school.isActive}" 
+                      :id="'school-' + index" 
+                      :key="school.id"
+                      :index="index" 
+                      :class="{'active-item': school.isActive}"
                       class="search-result"
                       @mouseover="onDropdownItemShiftHover(index)"
                       @keyup.enter="onSelectedSchool(school)" 
@@ -141,6 +141,7 @@ export default {
   data: function() {
     return {
       searchTerm: '',
+      initialSearchTerm: '',
       searchTermCompleted: false,
       currentDropdownIndex: -1,
       currentDropdownItem: {},
@@ -163,9 +164,17 @@ export default {
     },
 
     async onSearch() {
+      if (this.$refs.dropdown !== undefined) this.$refs.dropdown.scrollTop = 0
+      if (this.currentDropdownIndex > -1)
+        this.schools[this.currentDropdownIndex].isActive = false
+
       this.searchTermCompleted = false
+      this.currentDropdownIndex = -1
+
       if (!this.searchTerm || this.searchTerm.trim().length === 0) {
+        this.initialSearchTerm = ''
       } else {
+        this.initialSearchTerm = this.searchTerm
         await this.getSearchResults(this.searchTerm.trim())
       }
     },
@@ -220,28 +229,33 @@ export default {
     },
 
     onDropdownItemShift(shiftValue) {
-      if (this.schools === undefined || this.schools.length === 0) return
+      if (
+        !this.searchTerm ||
+        this.searchTerm.trim().length === 0 ||
+        this.schools === undefined ||
+        this.schools.length === 0 ||
+        (this.currentDropdownIndex + 1 >= this.schools.length &&
+          shiftValue === 1) ||
+        (this.currentDropdownIndex === -1 && shiftValue === -1)
+      )
+        return
 
       let schools = this.schools
       this.schools = []
-
-      if (this.currentDropdownIndex > -1)
-        schools[this.currentDropdownIndex].isActive = false
+      let oldDropdownIndex = this.currentDropdownIndex
       this.currentDropdownIndex += shiftValue
 
-      if (
-        this.currentDropdownIndex > -1 &&
-        schools[this.currentDropdownIndex] !== undefined
-      ) {
+      if (oldDropdownIndex > -1) schools[oldDropdownIndex].isActive = false
+      if (this.currentDropdownIndex > -1)
         schools[this.currentDropdownIndex].isActive = true
-        this.searchTerm = schools[this.currentDropdownIndex].name
-        this.selectedSchool = schools[this.currentDropdownIndex]
-      }
+
+      if (this.currentDropdownIndex == -1)
+        this.searchTerm = this.initialSearchTerm
+      else this.searchTerm = schools[this.currentDropdownIndex].name
 
       this.schools = schools
-      document
-        .getElementById('school-' + this.currentDropdownIndex)
-        .scrollIntoView()
+      let scrollHeight = this.$refs.dropdown.scrollHeight
+      this.$refs.dropdown.scrollTop = 62 * this.currentDropdownIndex
     },
 
     onDropdownItemShiftHover(itemIndex) {
