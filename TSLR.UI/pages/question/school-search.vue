@@ -51,6 +51,7 @@
                 <div v-if="jsEnabled()" id="search-container">
                   <div class="search-bar govuk-form-group">
                     <input 
+                      v-on-clickaway="removeDropdown"
                       id="name"
                       ref="search" 
                       v-model="searchTerm" 
@@ -62,7 +63,8 @@
                       @input="onSearch"
                       @keyup.down="onDropdownItemShift(1)"
                       @keyup.up="onDropdownItemShift(-1)"
-                      @keyup.enter="onSelectedSchoolEnter()">
+                      @keyup.enter="onSelectedSchoolEnter()"
+                      @keydown.tab="removeDropdown">
                   </div>
                   <div v-if="searchTermActive()" ref="dropdown" class="search-results">
                     <div
@@ -114,12 +116,15 @@
 <script>
 import axios from 'axios'
 import _ from 'lodash'
+import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
   watchQuery: true,
+  mixins: [clickaway],
   head: {
     title: 'The school you taught at'
   },
+
   async asyncData({ route }) {
     let invalid = false
 
@@ -152,6 +157,7 @@ export default {
           name: ''
         }
       ],
+      hiddenSchools: [],
       error: false,
       selectedSchool: {
         name: null
@@ -307,6 +313,16 @@ export default {
 
       this.searchTermCompleted = false
       this.currentDropdownIndex = -1
+    },
+
+    removeDropdown() {
+      this.hiddenSchools = this.schools
+      this.schools = []
+      this.resetQuery()
+    },
+
+    onInputClick() {
+      if (this.searchTerm.trim().length > 0) this.schools = this.hiddenSchools
     }
   }
 }
