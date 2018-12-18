@@ -24,7 +24,7 @@
     <EntryPoint>
       <ExeHost>
         <Program>node.exe</Program>
-        <Arguments>NODE_ENV=production server.js</Arguments>
+        <Arguments>server.js</Arguments>
         <WorkingFolder>CodePackage</WorkingFolder>
         <!-- Uncomment to log console output (both stdout and stderr) to one of the
              service's working directories. -->
