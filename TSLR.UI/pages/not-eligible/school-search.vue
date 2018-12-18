@@ -9,7 +9,7 @@
           <p class="govuk-body">
             You can only claim if your school is in an eligible area for this scheme.
           </p>
-          <p class="govuk-body"><a href="https://www.gov.uk/guidance/teachers-student-loan-reimbursement-guidance-for-teachers-and-schools#eligibility-criteria">Check what the eligible areas are</a></p>
+          <p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/guidance/teachers-student-loan-reimbursement-guidance-for-teachers-and-schools#eligibility-criteria" tabindex="4">Check what the eligible areas are</a></p>
         </div>
       </div>
     </div>

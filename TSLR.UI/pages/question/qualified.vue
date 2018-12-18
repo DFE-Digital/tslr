@@ -47,7 +47,8 @@
                         class="govuk-radios__input" 
                         name="qualified" 
                         type="radio" 
-                        value="After">
+                        value="After"
+                        tabindex="4">
                       <label 
                         class="govuk-label govuk-radios__label" 
                         for="when-did-you-qualify1">
@@ -62,7 +63,8 @@
                         class="govuk-radios__input" 
                         name="qualified" 
                         type="radio" 
-                        value="Before">
+                        value="Before"
+                        tabindex="5">
                       <label 
                         class="govuk-label govuk-radios__label" 
                         for="when-did-you-qualify2">
@@ -75,7 +77,8 @@
               <button 
                 type="submit" 
                 form="qualified-form"
-                class="govuk-button">
+                class="govuk-button"
+                tabindex="6">
                 Continue
               </button>
             </form> 

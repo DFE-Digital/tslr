@@ -66,7 +66,8 @@
                         class="govuk-radios__input" 
                         name="taught" 
                         type="radio" 
-                        value="1">
+                        value="1"
+                        tabindex="4">
                       <label 
                         class="govuk-label govuk-radios__label" 
                         for="taught1">
@@ -81,7 +82,8 @@
                         class="govuk-radios__input" 
                         name="taught" 
                         type="radio" 
-                        value="2">
+                        value="2"
+                        tabindex="5">
                       <label 
                         class="govuk-label govuk-radios__label" 
                         for="taught2">
@@ -96,7 +98,8 @@
                         class="govuk-radios__input" 
                         name="taught" 
                         type="radio" 
-                        value="3">
+                        value="3"
+                        tabindex="6">
                       <label 
                         class="govuk-label govuk-radios__label" 
                         for="taught3">
@@ -108,7 +111,8 @@
               </div>
               <button 
                 type="submit"
-                class="govuk-button">
+                class="govuk-button"
+                tabindex="7">
                 Continue
               </button>
             </form> 

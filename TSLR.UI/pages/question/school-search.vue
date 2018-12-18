@@ -64,7 +64,7 @@
                       @keyup.up="onDropdownItemShift(-1)"
                       @keyup.enter="onSelectedSchoolEnter()">
                   </div>
-                  <div v-if="searchTermActive()" ref="dropdown" class="search-results" tabindex="-1">
+                  <div v-if="searchTermActive()" ref="dropdown" class="search-results">
                     <div
                       v-for="(school, index) in schools"
                       :id="'school-' + index" 
@@ -72,7 +72,6 @@
                       :index="index" 
                       :class="{'active-item': school.isActive}"
                       class="search-result"
-                      tabindex="-1"
                       @mouseover="onDropdownItemShiftHover(index)"
                       @mouseleave="onDropdownMouseOut(index)"
                       @keyup.enter="onSelectedSchool(school)"

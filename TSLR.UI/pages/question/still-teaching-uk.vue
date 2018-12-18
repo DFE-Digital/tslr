@@ -47,7 +47,8 @@
                         class="govuk-radios__input" 
                         name="status" 
                         type="radio" 
-                        value="true">
+                        value="true"
+                        tabindex="4">
                       <label 
                         class="govuk-label govuk-radios__label" 
                         for="still-teaching-uk1">
@@ -62,7 +63,8 @@
                         class="govuk-radios__input" 
                         name="status" 
                         type="radio" 
-                        value="false">
+                        value="false"
+                        tabindex="5">
                       <label 
                         class="govuk-label govuk-radios__label" 
                         for="still-teaching-uk2">
@@ -74,7 +76,8 @@
               </div>
               <button 
                 type="submit" 
-                class="govuk-button">
+                class="govuk-button"
+                tabindex="6">
                 Continue
               </button>
             </form> 

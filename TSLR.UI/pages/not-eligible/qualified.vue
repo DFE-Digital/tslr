@@ -8,7 +8,7 @@
         <p class="govuk-body">
           You must have qualified as a teacher after 1 September 2012.
         </p>
-        <p class="govuk-body"><a href="https://www.gov.uk">Go to gov.uk homepage</a></p>
+        <p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk" tabindex="4">Go to gov.uk homepage</a></p>
       </div>
     </div>
   </div>

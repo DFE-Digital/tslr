@@ -13,7 +13,7 @@
       <p class="govuk-body">
         If you've worked at more than one school since 6 April 2018, check your eligiblity separately for each school.
       </p>
-      <nuxt-link to="/question/qualified" role="button" draggable="false" class="govuk-button">
+      <nuxt-link to="/question/qualified" role="button" draggable="false" class="govuk-button" tabindex="4">
         Continue to questions
       </nuxt-link>
     </div>
