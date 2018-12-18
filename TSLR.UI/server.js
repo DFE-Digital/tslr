@@ -1,4 +1,4 @@
-const { Nuxt } = require('nuxt')
+const { Nuxt, Builder } = require('nuxt')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -6,6 +6,8 @@ const isProd = process.env.NODE_ENV === 'production'
 const config = require('./nuxt.config.js')
 config.dev = !isProd
 const nuxt = new Nuxt(config)
+
+new Builder(nuxt).build()
 
 require('greenlock-express')
   .create({
