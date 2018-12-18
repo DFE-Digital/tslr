@@ -3,11 +3,9 @@ export default async function({ store, route, redirect }) {
   if (route.path.includes('validator/student-loan')) {
     if (route.query.paid) {
       if (route.query.paid.includes('true')) {
-        console.log('Searching')
         let schoolRes = await axios
           .get(`/api/Schools/${route.query.schoolId}/sen`)
           .then(res => {
-            console.log('returned :' + res.data)
             return res.data
           })
           .catch(err => {
