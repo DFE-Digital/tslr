@@ -50,7 +50,7 @@
                         value="After">
                       <label 
                         class="govuk-label govuk-radios__label" 
-                        for="where-do-you-live-1">
+                        for="when-did-you-qualify1">
                         On or after 1 September 2012
                       </label>
                     </div>
@@ -65,7 +65,7 @@
                         value="Before">
                       <label 
                         class="govuk-label govuk-radios__label" 
-                        for="where-do-you-live-2">
+                        for="when-did-you-qualify2">
                         Before 1 September 2012
                       </label>
                     </div>

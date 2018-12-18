@@ -10,7 +10,7 @@
       <p class="govuk-body">
         You can apply from September 2019. Register your details and we'll send you updates about the service.
       </p>
-      <a href="https://goo.gl/forms/Fpl9VoqSMWoAZwPn2/" role="button" draggable="false" class="govuk-button govuk-button--start">
+      <a href="https://goo.gl/forms/Fpl9VoqSMWoAZwPn2/" role="button" draggable="false" class="govuk-button">
         Register for updates
       </a>
     </div>
