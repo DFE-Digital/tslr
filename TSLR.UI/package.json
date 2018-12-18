@@ -19,6 +19,7 @@
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "govuk-frontend": "^2.4.0",
+    "greenlock-express": "^2.5.0",
     "nuxt": "^2.0.0",
     "ssl-root-cas": "^1.2.5",
     "whatwg-fetch": "^3.0.0"
