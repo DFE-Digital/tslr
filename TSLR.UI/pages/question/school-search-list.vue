@@ -3,7 +3,7 @@
     <div class="govuk-width-container">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-          <nuxt-link :to="{ path: 'school-search'}" class="govuk-back-link">
+          <nuxt-link :to="{ path: 'school-search'}" tabindex="4" class="govuk-back-link">
             Back
           </nuxt-link>
           <main id="main-content" class="govuk-main-wrapper app-main-class" role="main">
@@ -14,7 +14,7 @@
           <div>
             <div v-for="school in schools" :key="school.id" class="govuk-list">
               <div class="school-link govuk-!-font-size-24 govuk-!-font-weight-bold">
-                <nuxt-link :to="{ path: 'validator/school-search', query: { id: school.id }}" class="govuk-link">
+                <nuxt-link :to="{ path: 'validator/school-search', query: { id: school.id }}" class="govuk-link" tabindex="5">
                   {{ school.name }} {{ closeTag(school.closeDate) }}
                 </nuxt-link>
               </div>
@@ -25,7 +25,7 @@
           </div>
           <p class="govuk-body">
             If your school isn't shown, 
-          <nuxt-link to="question/school-search" class="govuk-link">return to the previous page</nuxt-link>and enter a different search term</p>
+          <nuxt-link tabindex="6" to="question/school-search" class="govuk-link">return to the previous page</nuxt-link>and enter a different search term</p>
         </div>
       </div>
     </div>
@@ -35,8 +35,16 @@
 import axios from 'axios'
 export default {
   watchQuery: true,
+  tabIndex: 4, //accounts for first 3 indexes in header/phase banner
   head: {
     title: 'School search'
+  },
+  directives: {
+    tabindex: {
+      inserted(el) {
+        el.setAttribute('tabindex', tabIndex++)
+      }
+    }
   },
   async asyncData({ route }) {
     let invalid = false
@@ -90,6 +98,10 @@ export default {
       let formattedDate = new Date(year, month, day)
 
       return formattedDate <= new Date() ? '(Closed)' : ''
+    },
+
+    getTabIndex() {
+      return this.tabIndex++
     }
   }
 }
