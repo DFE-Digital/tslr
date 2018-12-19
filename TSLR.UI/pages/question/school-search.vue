@@ -63,7 +63,6 @@
                       @input="onSearch"
                       @keyup.down="onDropdownItemShift(1)"
                       @keyup.up="onDropdownItemShift(-1)"
-                      @keyup.enter="onSelectedSchoolEnter()"
                       @keydown.tab="removeDropdown">
                   </div>
                   <div v-if="searchTermActive()" ref="dropdown" class="search-results">
@@ -109,7 +108,6 @@
         </div>
       </div>
     </div>
-
   </section>
 </template>
 
@@ -308,7 +306,7 @@ export default {
 
     resetQuery() {
       if (this.$refs.dropdown !== undefined) this.$refs.dropdown.scrollTop = 0
-      if (this.currentDropdownIndex > -1)
+      if (this.currentDropdownIndex > -1 && this.schools.length > 0)
         this.schools[this.currentDropdownIndex].isActive = false
 
       this.searchTermCompleted = false
