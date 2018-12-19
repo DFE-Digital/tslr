@@ -173,7 +173,6 @@ export default {
     return {
       searchTerm: '',
       initialSearchTerm: '',
-      searchTermCompleted: false,
       currentDropdownIndex: -1,
       currentDropdownItem: {},
       arrowActive: false,
@@ -214,14 +213,12 @@ export default {
     onSelectedSchool(school) {
       if (this.searchTerm === '') return
 
-      this.searchTermCompleted = true
       this.searchTerm = school.name
       this.selectedSchool = school
     },
 
     onSelectedSchoolEnter() {
       if (this.searchTerm === '' || this.schools.length === 0) return
-      this.searchTermCompleted = true
       this.searchTerm = this.schools[this.currentDropdownIndex].name
       this.selectedSchool = this.schools[this.currentDropdownIndex]
     },
@@ -322,7 +319,6 @@ export default {
       if (this.currentDropdownIndex > -1 && this.schools.length > 0)
         this.schools[this.currentDropdownIndex].isActive = false
 
-      this.searchTermCompleted = false
       this.currentDropdownIndex = -1
     },
 
