@@ -97,15 +97,17 @@
             <noscript>
               <button type="submit" class="govuk-button" tabindex="6">Continue</button>
             </noscript>
-            <button 
-              v-if="jsEnabled()"
-              type="button"
-              class="govuk-button"
-              tabindex="6"
-              @click="submit()"
-              @enter="submit()">
-              Continue
-            </button>
+            <no-ssr>
+              <button 
+                v-if="jsEnabled()"
+                type="button"
+                class="govuk-button"
+                tabindex="6"
+                @click="submit()"
+                @enter="submit()">
+                Continue
+              </button>
+            </no-ssr>
           </form> 
         </div>
       </div>
