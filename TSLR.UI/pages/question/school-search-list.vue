@@ -35,7 +35,6 @@
 import axios from 'axios'
 export default {
   watchQuery: true,
-  tabIndex: 4, //accounts for first 3 indexes in header/phase banner
   head: {
     title: 'School search'
   },
@@ -98,10 +97,6 @@ export default {
       let formattedDate = new Date(year, month, day)
 
       return formattedDate <= new Date() ? '(Closed)' : ''
-    },
-
-    getTabIndex() {
-      return this.tabIndex++
     }
   }
 }
