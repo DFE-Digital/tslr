@@ -37,7 +37,7 @@
                     </h1>
                   </legend>
                   <p class="govuk-body">
-                    You can only claim your student loan payments back if you've been teaching one or more of these subjects since 6 April 2018,
+                    You can only claim your student loan payments back if you've been teaching one or more of these subjects since 6 April 2018:
                   </p>
                   <ul class="govuk-list govuk-list--bullet">
                     <li>biology</li>
@@ -50,6 +50,8 @@
                     <span>
                       Since 6 April 2018, have you taught one or more of these subjects at {{ schoolName }}?
                     </span>
+                  </p>
+                  <p class="govuk-body">
                     <span class="hint">
                       If you've been off on long-term leave or sick, include the time you were scheduled to teach these subjects.
                     </span>
