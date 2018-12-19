@@ -95,7 +95,7 @@
               </fieldset>
             </div>
             <noscript>
-              <button type="submit" class="govuk-button" tabindex="6">Continue</button>
+              <button type="submit" class="govuk-button" tabindex="6"></button>
             </noscript>
             <no-ssr>
               <button 
