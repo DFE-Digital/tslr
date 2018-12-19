@@ -14,17 +14,13 @@ const nuxt = new Nuxt(config)
 app.use(nuxt.render)
 
 // Build only in dev mode with hot-reloading
-if (config.dev) {
-  new Builder(nuxt)
-    .build()
-    .then(listen)
-    .catch(error => {
-      console.error(error)
-      process.exit(1)
-    })
-} else {
-  listen()
-}
+new Builder(nuxt)
+  .build()
+  .then(listen)
+  .catch(error => {
+    console.error(error)
+    process.exit(1)
+  })
 
 var options = {
   key: fs.readFileSync('./ssl/key.pem'),
@@ -34,14 +30,7 @@ var options = {
 // Listen the server
 function listen() {
   // Listen the server
-  http
-    .createServer(function(req, res) {
-      res.writeHead(301, {
-        Location: 'https://' + req.headers['host'] + req.url
-      })
-      res.end()
-    })
-    .listen(80)
+  http.createServer(app).listen(80)
   https.createServer(options, app).listen(443)
   console.log('Server listening on `localhost:')
 }

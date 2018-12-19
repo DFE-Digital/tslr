@@ -10,11 +10,19 @@ export default async function({ store, route, redirect }) {
           })
           .catch(err => {
             console.log('Error: ' + err)
-            redirect(
-              `/question/student-loan?invalid=true&schoolId=${
-                route.query.schoolId
-              }&apiError=${err}`
-            )
+            if (process.env.NODE_ENV === 'production') {
+              redirect(
+                `/question/student-loan?invalid=true&schoolId=${
+                  route.query.schoolId
+                }`
+              )
+            } else {
+              redirect(
+                `/question/student-loan?invalid=true&schoolId=${
+                  route.query.schoolId
+                }&apiError=${err}`
+              )
+            }
           })
         if (schoolRes) {
           redirect('/question/still-teaching-uk')
