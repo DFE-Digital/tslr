@@ -48,7 +48,7 @@
                   You must select a school
                 </span>
                 <label class="govuk-label" for="check-school-name">Enter the school name</label>
-                <no-ssr placeholder="Loading...">
+                <no-ssr>
                   <div v-if="jsEnabled()" id="search-container">
                     <div class="search-bar govuk-form-group">
                       <input 
@@ -88,24 +88,26 @@
                       </div>
                     </div>
                   </div>
-                  <noscript>
-                    <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
-                  </noscript>
-                </no-ssr>
+                </no-ssr>  
+                <noscript>
+                  <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
+                </noscript>
               </fieldset>
             </div>
             <noscript>
               <button type="submit" class="govuk-button" tabindex="6">Continue</button>
             </noscript>
-            <button 
-              v-if="jsEnabled()"
-              type="button"
-              class="govuk-button"
-              tabindex="6"
-              @click="submit()"
-              @enter="submit()">
-              Continue
-            </button>
+            <no-ssr>
+              <button 
+                v-if="jsEnabled()"
+                type="button"
+                class="govuk-button"
+                tabindex="6"
+                @click="submit()"
+                @enter="submit()">
+                Continue
+              </button>
+            </no-ssr>
           </form> 
         </div>
       </div>
@@ -164,18 +166,8 @@ export default {
     if (route.query.invalid) {
       invalid = true
     }
-
-    let schoolRes = await axios
-      .get(`api/Schools`)
-      .then(res => {
-        return res.data
-      })
-      .catch(err => {
-        console.log(err)
-      })
     return {
-      error: invalid,
-      schools: schoolRes
+      error: invalid
     }
   },
   data: function() {
