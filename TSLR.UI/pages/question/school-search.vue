@@ -7,8 +7,7 @@
             v-if="error" 
             class="govuk-error-summary" 
             aria-labelledby="error-summary-title" 
-            role="alert" 
-            tabindex="-1" 
+            role="alert"
             data-module="error-summary">
             <h2 id="error-summary-title" class="govuk-error-summary__title">
               There is a problem
@@ -90,7 +89,7 @@
                   </div>
                 </no-ssr>  
                 <noscript>
-                  <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
+                  <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools" maxlength="300" tabindex="5">
                 </noscript>
               </fieldset>
             </div>
