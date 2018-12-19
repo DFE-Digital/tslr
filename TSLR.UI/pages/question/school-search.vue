@@ -177,11 +177,7 @@ export default {
       currentDropdownIndex: -1,
       currentDropdownItem: {},
       arrowActive: false,
-      schools: [
-        {
-          name: ''
-        }
-      ],
+      schools: [],
       error: false,
       selectedSchool: {
         name: null
@@ -231,10 +227,7 @@ export default {
     },
 
     searchTermActive() {
-      return (
-        !this.searchTermCompleted &&
-        (this.searchTerm !== undefined && this.searchTerm.trim().length > 0)
-      )
+      return this.schools.length > 0 && this.searchTerm.trim().length > 0
     },
 
     getLabel(school) {
