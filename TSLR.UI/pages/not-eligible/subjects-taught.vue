@@ -14,6 +14,7 @@
         <li>computer science</li>
         <li>languages (not including English)</li>
       </ul>
+      <p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk" tabindex="4">Go to gov.uk homepage</a></p>
     </div>
   </div>
 </template>
