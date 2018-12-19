@@ -3,8 +3,15 @@
     <div class="govuk-width-container ">
       <div class="govuk-footer__meta">
         <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
-
-          <svg 
+          <h2 class="govuk-visually-hidden">Support links</h2>
+          <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/Cookies_Policy.docx">
+                Cookies
+              </a>
+            </li>
+          </ul>
+          <svg
             role="presentation" 
             focusable="false" 
             class="govuk-footer__licence-logo" 
