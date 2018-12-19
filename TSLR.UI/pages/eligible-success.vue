@@ -13,6 +13,12 @@
       <a href="https://goo.gl/forms/Fpl9VoqSMWoAZwPn2/" role="button" draggable="false" class="govuk-button" tabindex="4">
         Register for updates
       </a>
+      <p class="govuk-body">
+        If you've worked at another school since 6 April 2018 
+        <nuxt-link to="/" role="button" draggable="false" tabindex="5">
+          check your eligibility again.
+        </nuxt-link>
+      </p>
     </div>
   </div>
 </template>
