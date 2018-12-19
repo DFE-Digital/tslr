@@ -64,7 +64,6 @@
                         @input="onSearch"
                         @keyup.down="onDropdownItemShift(1)"
                         @keyup.up="onDropdownItemShift(-1)"
-                        @keyup.enter="onSelectedSchoolEnter()"
                         @keydown.tab="removeDropdown">
                     </div>
                     <div v-if="searchTermActive()" ref="dropdown" class="search-results">
