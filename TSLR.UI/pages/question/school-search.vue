@@ -133,18 +133,8 @@ export default {
     if (route.query.invalid) {
       invalid = true
     }
-
-    let schoolRes = await axios
-      .get(`api/Schools`)
-      .then(res => {
-        return res.data
-      })
-      .catch(err => {
-        console.log(err)
-      })
     return {
-      error: invalid,
-      schools: schoolRes
+      error: invalid
     }
   },
   data: function() {
