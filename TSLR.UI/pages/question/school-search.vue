@@ -52,7 +52,7 @@
                   <div v-if="jsEnabled()" id="search-container">
                     <div class="search-bar govuk-form-group">
                       <input 
-                        v-on-clickaway="removeDropdown"
+                        v-clickoutside="removeDropdown"
                         id="name"
                         ref="search" 
                         v-model="searchTerm" 
@@ -64,6 +64,7 @@
                         @input="onSearch"
                         @keyup.down="onDropdownItemShift(1)"
                         @keyup.up="onDropdownItemShift(-1)"
+                        @keydown.enter="onSelectedSchoolEnter()"
                         @keydown.tab="removeDropdown">
                     </div>
                     <div v-if="searchTermActive()" ref="dropdown" class="search-results">
@@ -76,7 +77,6 @@
                         class="search-result"
                         @mouseover="onDropdownItemShiftHover(index)"
                         @mouseleave="onDropdownMouseOut(index)"
-                        @keyup.enter="onSelectedSchool(school)"
                         @click="onSelectedSchool(school)">
                         <div class="school-name">
                           <span>{{ school.name }}</span> <span class="closed-tag">{{ closeTag(school.closeDate) }}</span>
@@ -116,11 +116,44 @@
 <script>
 import axios from 'axios'
 import _ from 'lodash'
-import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
   watchQuery: true,
-  mixins: [clickaway],
+  directives: {
+    clickoutside: {
+      bind: function(el, binding, vNode) {
+        // Provided expression must evaluate to a function.
+        if (typeof binding.value !== 'function') {
+          const compName = vNode.context.name
+          let warn = `[Vue-click-outside:] provided expression '${
+            binding.expression
+          }' is not a function, but has to be`
+          if (compName) {
+            warn += `Found in component '${compName}'`
+          }
+
+          console.warn(warn)
+        }
+        // Define Handler and cache it on the element
+        const bubble = binding.modifiers.bubble
+        const handler = e => {
+          if (bubble || (!el.contains(e.target) && el !== e.target)) {
+            binding.value(e)
+          }
+        }
+        el.__vueClickOutside__ = handler
+
+        // add Event Listeners
+        document.addEventListener('click', handler)
+      },
+
+      unbind: function(el, binding) {
+        // Remove Event Listeners
+        document.removeEventListener('click', el.__vueClickOutside__)
+        el.__vueClickOutside__ = null
+      }
+    }
+  },
   head: {
     title: 'The school you taught at'
   },
@@ -152,12 +185,12 @@ export default {
       searchTermCompleted: false,
       currentDropdownIndex: -1,
       currentDropdownItem: {},
+      arrowActive: false,
       schools: [
         {
           name: ''
         }
       ],
-      hiddenSchools: [],
       error: false,
       selectedSchool: {
         name: null
@@ -174,10 +207,7 @@ export default {
     async onSearch() {
       this.resetQuery()
 
-      if (!this.searchTerm || this.searchTerm.trim().length === 0) {
-        this.initialSearchTerm = ''
-      } else {
-        this.initialSearchTerm = this.searchTerm
+      if (this.searchTerm && this.searchTerm.trim().length > 0) {
         await this.getSearchResults(this.searchTerm.trim())
       }
     },
@@ -195,13 +225,15 @@ export default {
     }, 350),
 
     onSelectedSchool(school) {
+      if (this.searchTerm === '') return
+
       this.searchTermCompleted = true
       this.searchTerm = school.name
       this.selectedSchool = school
     },
 
     onSelectedSchoolEnter() {
-      if (this.searchTerm === '') return
+      if (this.searchTerm === '' || this.schools.length === 0) return
       this.searchTermCompleted = true
       this.searchTerm = this.schools[this.currentDropdownIndex].name
       this.selectedSchool = this.schools[this.currentDropdownIndex]
@@ -232,6 +264,7 @@ export default {
     },
 
     onDropdownItemShift(shiftValue) {
+      this.arrowActive = true
       if (this.currentDropdownIndex === -1 && shiftValue === -1) return false
 
       if (
@@ -253,16 +286,16 @@ export default {
       if (this.currentDropdownIndex > -1)
         schools[this.currentDropdownIndex].isActive = true
 
-      if (this.currentDropdownIndex == -1)
-        this.searchTerm = this.initialSearchTerm
-      else this.searchTerm = schools[this.currentDropdownIndex].name
-
       this.schools = schools
       let scrollHeight = this.$refs.dropdown.scrollHeight
       this.$refs.dropdown.scrollTop = 62 * this.currentDropdownIndex
     },
 
     onDropdownItemShiftHover(itemIndex) {
+      if (this.arrowActive) {
+        this.arrowActive = false
+        return
+      }
       if (this.schools === undefined || this.schools.length === 0) return
 
       let schools = this.schools
@@ -274,9 +307,6 @@ export default {
       this.currentDropdownIndex = itemIndex
       schools[itemIndex].isActive = true
       this.schools = schools
-
-      this.searchTerm = schools[this.currentDropdownIndex].name
-      this.selectedSchool = schools[this.currentDropdownIndex]
     },
 
     onDropdownMouseOut(itemIndex) {
@@ -284,9 +314,6 @@ export default {
       this.schools = []
       schools[itemIndex].isActive = false
       this.schools = schools
-
-      this.searchTerm = this.initialSearchTerm
-      this.resetQuery()
     },
 
     submit() {
@@ -316,13 +343,8 @@ export default {
     },
 
     removeDropdown() {
-      this.hiddenSchools = this.schools
       this.schools = []
       this.resetQuery()
-    },
-
-    onInputClick() {
-      if (this.searchTerm.trim().length > 0) this.schools = this.hiddenSchools
     }
   }
 }
@@ -399,7 +421,6 @@ export default {
     .closed-tag {
       color: #6f777b;
       opacity: 0.8;
-      font-style: italic;
     }
   }
 }
