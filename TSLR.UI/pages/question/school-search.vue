@@ -48,7 +48,7 @@
                   You must select a school
                 </span>
                 <label class="govuk-label" for="check-school-name">Enter the school name</label>
-                <no-ssr placeholder="Loading...">
+                <no-ssr>
                   <div v-if="jsEnabled()" id="search-container">
                     <div class="search-bar govuk-form-group">
                       <input 
@@ -88,10 +88,10 @@
                       </div>
                     </div>
                   </div>
-                  <noscript>
-                    <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
-                  </noscript>
-                </no-ssr>
+                </no-ssr>  
+                <noscript>
+                  <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
+                </noscript>
               </fieldset>
             </div>
             <noscript>
