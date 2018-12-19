@@ -48,49 +48,51 @@
                   You must select a school
                 </span>
                 <label class="govuk-label" for="check-school-name">Enter the school name</label>
-                <div v-if="jsEnabled()" id="search-container">
-                  <div class="search-bar govuk-form-group">
-                    <input 
-                      v-on-clickaway="removeDropdown"
-                      id="name"
-                      ref="search" 
-                      v-model="searchTerm" 
-                      class="govuk-input"
-                      type="text" 
-                      autocomplete="off"
-                      maxlength="300"
-                      tabindex="5"
-                      @input="onSearch"
-                      @keyup.down="onDropdownItemShift(1)"
-                      @keyup.up="onDropdownItemShift(-1)"
-                      @keyup.enter="onSelectedSchoolEnter()"
-                      @keydown.tab="removeDropdown">
-                  </div>
-                  <div v-if="searchTermActive()" ref="dropdown" class="search-results">
-                    <div
-                      v-for="(school, index) in schools"
-                      :id="'school-' + index" 
-                      :key="school.id"
-                      :index="index" 
-                      :class="{'active-item': school.isActive}"
-                      class="search-result"
-                      @mouseover="onDropdownItemShiftHover(index)"
-                      @mouseleave="onDropdownMouseOut(index)"
-                      @keyup.enter="onSelectedSchool(school)"
-                      @click="onSelectedSchool(school)">
-                      <div class="school-name">
-                        <span>{{ school.name }}</span> <span class="closed-tag">{{ closeTag(school.closeDate) }}</span>
+                <no-ssr placeholder="Loading...">
+                  <div v-if="jsEnabled()" id="search-container">
+                    <div class="search-bar govuk-form-group">
+                      <input 
+                        v-on-clickaway="removeDropdown"
+                        id="name"
+                        ref="search" 
+                        v-model="searchTerm" 
+                        class="govuk-input"
+                        type="text" 
+                        autocomplete="off"
+                        maxlength="300"
+                        tabindex="5"
+                        @input="onSearch"
+                        @keyup.down="onDropdownItemShift(1)"
+                        @keyup.up="onDropdownItemShift(-1)"
+                        @keyup.enter="onSelectedSchoolEnter()"
+                        @keydown.tab="removeDropdown">
+                    </div>
+                    <div v-if="searchTermActive()" ref="dropdown" class="search-results">
+                      <div
+                        v-for="(school, index) in schools"
+                        :id="'school-' + index" 
+                        :key="school.id"
+                        :index="index" 
+                        :class="{'active-item': school.isActive}"
+                        class="search-result"
+                        @mouseover="onDropdownItemShiftHover(index)"
+                        @mouseleave="onDropdownMouseOut(index)"
+                        @keyup.enter="onSelectedSchool(school)"
+                        @click="onSelectedSchool(school)">
+                        <div class="school-name">
+                          <span>{{ school.name }}</span> <span class="closed-tag">{{ closeTag(school.closeDate) }}</span>
+                        </div>
+                        <div class="school-caption">
+                          <span>{{ getLabel(school) }}</span>
+                        </div>
+                        <a :href="'#school-' + index" />
                       </div>
-                      <div class="school-caption">
-                        <span>{{ getLabel(school) }}</span>
-                      </div>
-                      <a :href="'#school-' + index" />
                     </div>
                   </div>
-                </div>
-                <noscript>
-                  <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
-                </noscript>
+                  <noscript>
+                    <input class="govuk-input" name="query_school" type="text" autocomplete="off" list="schools">
+                  </noscript>
+                </no-ssr>
               </fieldset>
             </div>
             <noscript>
