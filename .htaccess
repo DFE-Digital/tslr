@@ -1,4 +1,4 @@
 AuthType Basic
 AuthName "Teacher payment service alpha summary"
-AuthUserFile /fullpath.php
+AuthUserFile /app/.htpasswd
 Require valid-user
