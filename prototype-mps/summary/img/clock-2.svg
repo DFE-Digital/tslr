@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="32px" viewBox="0 0 31 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>clock</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="clock" transform="translate(2.000000, 2.000000)" stroke="#3D9AD9" stroke-width="3">
+            <path d="M13.6410256,27.6410256 C21.1744615,27.6410256 27.2820513,21.5334359 27.2820513,14 C27.2820513,6.4665641 21.1744615,0.358974359 13.6410256,0.358974359 C6.10758974,0.358974359 0,6.4665641 0,14 C0,21.5334359 6.10758974,27.6410256 13.6410256,27.6410256 Z" id="Stroke-238"></path>
+            <polyline id="Stroke-240" stroke-linejoin="round" points="12.9230769 7.8974359 12.9230769 14.518359 16.7562051 17.1848205"></polyline>
+        </g>
+    </g>
+</svg>

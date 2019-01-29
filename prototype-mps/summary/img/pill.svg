@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="143px" height="143px" viewBox="0 0 143 143" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>Pill</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="临摹第一组" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Pill" transform="translate(-13.000000, -13.000000)">
+            <rect id="Rectangle-152" fill="#EBEDEE" transform="translate(104.897709, 64.454798) rotate(-45.000000) translate(-104.897709, -64.454798) " x="46.5613998" y="31.9547981" width="116.672619" height="65" rx="32.5"></rect>
+            <path d="M43.5842786,84.7088159 C25.6356703,84.7088159 11.0854483,99.2556149 11.0854483,117.208816 L11.0854483,117.208816 C11.0854483,135.15807 25.6361804,149.708816 43.5842786,149.708816 L93.2019347,149.708816 L93.2019347,84.7088159 L43.5842786,84.7088159 Z" id="Rectangle-153" fill="#3D9AD9" transform="translate(52.143692, 117.208816) rotate(-45.000000) translate(-52.143692, -117.208816) "></path>
+            <rect id="Rectangle-154" fill-opacity="0.3" fill="#FFFFFF" transform="translate(73.097642, 73.029546) rotate(-45.000000) translate(-73.097642, -73.029546) " x="14.7613322" y="66.7555195" width="116.672619" height="12.5480522" rx="6.27402609"></rect>
+        </g>
+    </g>
+</svg>

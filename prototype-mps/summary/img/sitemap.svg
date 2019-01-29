@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="426px" height="366px" viewBox="0 0 426 366" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>sitemap</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="20-Internet-Element-Icons" transform="translate(-1054.000000, -1632.000000)" stroke="#3D9AD9" stroke-width="26">
+            <g id="sitemap" transform="translate(1067.000000, 1645.000000)">
+                <rect id="Rectangle-path" x="124.3" y="0" width="151.5" height="95.3"></rect>
+                <rect id="Rectangle-path" x="0" y="280" width="95.3" height="60"></rect>
+                <rect id="Rectangle-path" x="152.3" y="280" width="95.3" height="60"></rect>
+                <rect id="Rectangle-path" x="304.7" y="280" width="95.3" height="60"></rect>
+                <polyline id="Shape" points="47.7 280 47.7 170 352.3 170 352.3 280"></polyline>
+                <path d="M200,95.3 L200,280" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
