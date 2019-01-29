@@ -34,7 +34,7 @@
         <div id="h1-title" class="grid-container">
             <div class="grid-x grid-padding-x">
                 <div class="cell">
-                    <h1 class="govuk-heading-xl">MPS Prototypes</h1>
+                    <h1 class="govuk-heading-xl">The teacher payments service alpha summary now lives <a href="https://dfe-tslr-alpha-summary.herokuapp.com">here</a></h1>
                 </div>
             </div>
         </div>
