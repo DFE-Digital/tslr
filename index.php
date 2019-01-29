@@ -26,7 +26,7 @@
                 <div class="grid-x grid-padding-x grid-margin-x small-up-1 medium-up-3 large-up-3">
                     <div class="cell nav-panel"><a class="button secondary hollow expanded big-font" href="summary.php" target="_blank">Summary</a></div>
                     <div class="cell nav-panel"><a class="button secondary hollow expanded big-font" href="https://drive.google.com/open?id=1QGIFMGfhHFRo-BUlZTHYYR5b8t2-joqyVKXrRZU_eL8" target="_blank">End of alpha report</a></div>
-                    <div class="cell nav-panel"><a class="button secondary hollow expanded big-font" href="https://drive.google.com/open?id=1pEPRSonEp_iTuLpoWuwqAKmuogklMrI9" target="_blank">Alpha G-Drive Folder</a></div>
+                    <div class="cell nav-panel"><a class="button secondary hollow expanded big-font" href="https://drive.google.com/open?id=1pEPRSonEp_iTuLpoWuwqAKmuogklMrI9" target="_blank">Alpha G-Drive folder</a></div>
                 </div>
             </div>
         </div>
