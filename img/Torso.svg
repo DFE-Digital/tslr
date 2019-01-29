@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="46px" viewBox="0 0 44 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Torso</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Torso" transform="translate(2.000000, 2.000000)" stroke="#3D9AD9" stroke-width="4">
+            <path d="M40,34 C40,27.373 31.046,22 20,22 C8.954,22 0,27.373 0,34" id="Stroke-13"></path>
+            <path d="M20.2501,22.0087 C26.3251,22.0087 31.2501,17.0837 31.2501,11.0087 C31.2501,4.9337 26.3251,0.0087 20.2501,0.0087 C14.1751,0.0087 9.2501,4.9337 9.2501,11.0087 C9.2501,17.0837 14.1751,22.0087 20.2501,22.0087 Z" id="Stroke-15"></path>
+            <path d="M40,34 L40,40.565 C40,41.151 39.801,42 39.221,42 L1.279,42 C0.711,42 0,41.144 0,40.565 L0,34" id="Stroke-17"></path>
+        </g>
+    </g>
+</svg>

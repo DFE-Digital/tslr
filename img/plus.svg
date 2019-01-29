@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="63px" height="64px" viewBox="0 0 63 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>Plus</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Dashboard" transform="translate(-689.000000, -829.000000)" stroke="#DCDCDC">
+            <g id="Add-more-panels" transform="translate(520.000000, 739.000000)">
+                <g id="Plus" transform="translate(171.000000, 92.000000)">
+                    <path d="M29.3793846,59.2307692 C45.5224615,59.2307692 58.6101538,46.1430769 58.6101538,30 C58.6101538,13.8569231 45.5224615,0.769230769 29.3793846,0.769230769 C13.2363077,0.769230769 0.148615385,13.8569231 0.148615385,30 C0.148615385,46.1430769 13.2363077,59.2307692 29.3793846,59.2307692 L29.3793846,59.2307692 Z" id="Stroke-242" stroke-width="3.92"></path>
+                    <polyline id="Stroke-244" stroke-width="4" stroke-linejoin="round" points="29.7692308 43.0769231 29.7692308 17.6923077 29.7692308 30.7692308"></polyline>
+                    <polyline id="Stroke-246" stroke-width="4" stroke-linejoin="round" points="17.4615385 30.7692308 42.0769231 30.7692308 29.7692308 30.7692308"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
